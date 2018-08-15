@@ -1,4 +1,4 @@
-package com.big.fishcash.fishcash.util;
+package com.big.fishcash.cash.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.util.Log;
 import android.view.View;
 
 
-import com.big.fishcash.fishcash.base.BaseApplication;
+import com.big.fishcash.cash.base.BaseApplication;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;

@@ -1,4 +1,4 @@
-package com.big.fishcash.fishcash;
+package com.big.fishcash.cash;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

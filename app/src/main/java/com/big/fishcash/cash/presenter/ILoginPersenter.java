@@ -1,11 +1,11 @@
-package com.big.fishcash.fishcash.ui.iView;
+package com.big.fishcash.cash.presenter;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
  * 创建日期：2018/8/9 0009
- * 描述：View层接口---执行各种UI操作，定义的方法主要是给Presenter中来调用的
+ * 描述：Presenter层接口---控制Model层的数据操作及调用View层的UI操作来完成“中间人”工作
  * 修订历史：
  * ┌─┐       ┌─┐
  * ┌──┘ ┴───────┘ ┴──┐
@@ -32,6 +32,13 @@ package com.big.fishcash.fishcash.ui.iView;
  */
 
 
-public interface ILoginView {
-    void showToast(String text);
+public interface ILoginPersenter {
+
+
+    /**
+     *  @author  fenghao
+     *  @date    2018/8/15 0015 下午 20:20
+     *  @desc   登录接口
+     */
+    void toLogin();
 }

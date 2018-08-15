@@ -1,4 +1,4 @@
-package com.big.fishcash.fishcash.ui.dialog;
+package com.big.fishcash.cash.ui.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -11,8 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.big.fishcash.fishcash.R;
-import com.big.fishcash.fishcash.util.ToastUtil;
+import com.big.fishcash.cash.R;
+import com.big.fishcash.cash.util.ToastUtil;
 
 
 /**

@@ -1,14 +1,10 @@
-package com.big.fishcash.fishcash.presenter;
-
-import com.big.fishcash.fishcash.model.ILoginModel;
-import com.big.fishcash.fishcash.model.LoginModel;
-import com.big.fishcash.fishcash.ui.iView.ILoginView;
+package com.big.fishcash.cash.bean;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
- * 创建日期：2018/8/9 0009
+ * 创建日期：2018/8/15 0015
  * 描述：
  * 修订历史：
  * ┌─┐       ┌─┐
@@ -36,29 +32,23 @@ import com.big.fishcash.fishcash.ui.iView.ILoginView;
  */
 
 
-public class LoginPersenter implements ILoginPersenter,LoginModel.LoginDataCallback {
+public class UserInfoBean {
+    String user;
+    String password;
 
-    private final ILoginView iLoginView;
-    private final ILoginModel iLoginModel;
-
-    public LoginPersenter(ILoginView iLoginView, ILoginModel iLoginModel) {
-        this.iLoginView = iLoginView;
-        this.iLoginModel = iLoginModel;
+    public String getUser() {
+        return user;
     }
 
-    @Override
-    public void loginData() {
-        iLoginView.showToast("加载数据");
-        iLoginModel.getLoginData(LoginPersenter.this);
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    @Override
-    public void success(String taskId) {
-        iLoginView.showToast(taskId);
+    public String getPassword() {
+        return password;
     }
 
-    @Override
-    public void failure() {
-
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

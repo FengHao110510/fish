@@ -1,4 +1,4 @@
-package com.big.fishcash.fishcash.base;
+package com.big.fishcash.cash.base;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.big.fishcash.fishcash.R;
-import com.big.fishcash.fishcash.ui.dialog.LoadingDialog;
-import com.big.fishcash.fishcash.util.Global;
+import com.big.fishcash.cash.R;
+import com.big.fishcash.cash.ui.dialog.LoadingDialog;
+import com.big.fishcash.cash.util.Global;
 
 import butterknife.ButterKnife;
 
@@ -35,11 +35,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BaseApplication.getApplication().pushTask(this);
         initIconFont();
 
         //设置布局
         setContentView(initLayout());
+        BaseApplication.getInstance().pushTask(this);
+
         ButterKnife.bind(this);
         init();
 
@@ -112,7 +113,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        BaseApplication.getApplication().removeTask(this);
+        BaseApplication.getInstance().removeTask(this);
         super.finish();
     }
 

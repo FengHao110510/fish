@@ -1,4 +1,4 @@
-package com.big.fishcash.fishcash.util;
+package com.big.fishcash.cash.util;
 
 import android.content.Context;
 import android.os.Handler;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.big.fishcash.fishcash.R;
-import com.big.fishcash.fishcash.base.BaseApplication;
+import com.big.fishcash.cash.R;
+import com.big.fishcash.cash.base.BaseApplication;
 
 
 /**
@@ -58,10 +58,10 @@ public class ToastUtil {
             toast.clear();
         }
         if (text instanceof String) {
-            toast = ToastUtil.MyToast.makeText(BaseApplication.getApplication(), text.toString(), duration);
+            toast = ToastUtil.MyToast.makeText(BaseApplication.getInstance(), text.toString(), duration);
         } else if (text instanceof Integer) {
             int id = Integer.parseInt(text.toString());
-            toast = ToastUtil.MyToast.makeText(BaseApplication.getApplication(), id, duration);
+            toast = ToastUtil.MyToast.makeText(BaseApplication.getInstance(), id, duration);
         }
         toast.show();
     }

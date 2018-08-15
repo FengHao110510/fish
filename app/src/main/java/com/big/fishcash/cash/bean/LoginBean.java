@@ -1,4 +1,4 @@
-package com.big.fishcash.fishcash.bean;
+package com.big.fishcash.cash.bean;
 
 /**
  * 版权：鸿搜网络公司 版权所有

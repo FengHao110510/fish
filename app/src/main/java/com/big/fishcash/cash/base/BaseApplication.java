@@ -1,31 +1,17 @@
-package com.big.fishcash.fishcash.base;
+package com.big.fishcash.cash.base;
+
 
 import android.app.Application;
-import android.bluetooth.BluetoothSocket;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
-
-
-import com.big.fishcash.fishcash.R;
 
 import java.util.Iterator;
 import java.util.Stack;
-import java.util.concurrent.TimeUnit;
-
-
-
-
 
 public class BaseApplication extends Application {
 
     public static BaseApplication app;
 
-
-    /**
-     * 蓝牙对象
-     */
-    public BluetoothSocket socket = null;
 
     /***寄存整个应用Activity**/
     private final Stack<AppCompatActivity> activitys = new Stack<AppCompatActivity>();
@@ -34,27 +20,14 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        initApp();
+            app = this;
     }
 
 
-
-
-
-
-    private void initApp() {
-        app = this;
-    }
 
     public static synchronized BaseApplication getInstance() {
         return app;
     }
-
-    public static BaseApplication getApplication() {
-        return app;
-    }
-
-
 
     /**
      * 将Activity压入Application栈
@@ -138,11 +111,6 @@ public class BaseApplication extends Application {
                 task.finish();
             }
         }
-//        for (AppCompatActivity task : activitys) {
-//            if (!task.isFinishing()) {
-//                task.finish();
-//            }
-//        }
     }
 
 

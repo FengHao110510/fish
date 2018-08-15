@@ -1,4 +1,4 @@
-package com.big.fishcash.fishcash.util;
+package com.big.fishcash.cash.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

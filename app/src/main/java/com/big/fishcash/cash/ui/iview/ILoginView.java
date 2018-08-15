@@ -1,11 +1,13 @@
-package com.big.fishcash.fishcash.model;
+package com.big.fishcash.cash.ui.iview;
+
+import com.big.fishcash.cash.bean.UserInfoBean;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
  * 创建日期：2018/8/9 0009
- * 描述：LoginModel层接口---实现该接口的类负责实际的获取数据操作，如数据库读取、网络加载
+ * 描述：View层接口---执行各种UI操作，定义的方法主要是给Presenter中来调用的
  * 修订历史：
  * ┌─┐       ┌─┐
  * ┌──┘ ┴───────┘ ┴──┐
@@ -32,13 +34,18 @@ package com.big.fishcash.fishcash.model;
  */
 
 
-public interface ILoginModel {
-        /**
-         *  @author  fenghao
-         *  @date    2018/8/9 0009 下午 20:33
-         *  @param
-         *  @return  
-         *  @desc
-         */
-        void getLoginData(LoginModel.LoginDataCallback callback);
+public interface ILoginView {
+    /**
+     * @author fenghao
+     * @date 2018/8/15 0015 下午 20:17
+     * @desc 获取账号密码
+     */
+    UserInfoBean getUserInfor();
+
+    /**
+     * @author fenghao
+     * @date 2018/8/15 0015 下午 20:38
+     * @desc 登录
+     */
+    void toLogin();
 }

@@ -1,4 +1,4 @@
-package com.big.fishcash.fishcash;
+package com.big.fishcash.cash;
 
 import org.junit.Test;
 
