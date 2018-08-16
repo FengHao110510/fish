@@ -34,13 +34,7 @@ import com.big.fishcash.cash.bean.UserInfoBean;
  */
 
 
-public interface ILoginView {
-    /**
-     * @author fenghao
-     * @date 2018/8/15 0015 下午 20:17
-     * @desc 获取账号密码
-     */
-    UserInfoBean getUserInfor();
+public interface ILoginView extends BaseIView{
 
     /**
      * @author fenghao

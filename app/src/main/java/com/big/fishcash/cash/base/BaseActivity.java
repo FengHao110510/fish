@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.ui.dialog.LoadingDialog;
 import com.big.fishcash.cash.util.Global;
+import com.big.fishcash.cash.util.ToastUtil;
 
 import butterknife.ButterKnife;
 
@@ -36,7 +37,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initIconFont();
-
         //设置布局
         setContentView(initLayout());
         BaseApplication.getInstance().pushTask(this);
@@ -158,7 +158,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
     }
+    public static void showError(String err) {
+        ToastUtil.showToast(err);
 
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

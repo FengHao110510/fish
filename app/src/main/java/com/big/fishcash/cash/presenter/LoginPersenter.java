@@ -39,31 +39,28 @@ import com.big.fishcash.cash.util.ToastUtil;
  */
 
 
-public class LoginPersenter implements ILoginPersenter {
+public class LoginPersenter extends BasePersenter<ILoginView> implements ILoginPersenter {
 
     private ILoginModel iLoginModel;
-    private ILoginView  iLoginView;
+    private ILoginView iLoginView;
 
-    public LoginPersenter (ILoginView iLoginView){
-        this.iLoginView = iLoginView;
-        iLoginModel = new LoginModel();
+    public LoginPersenter(ILoginModel iLoginModel) {
+        this.iLoginModel = iLoginModel;
     }
 
     @Override
-    public void toLogin() {
-        UserInfoBean userInfor = iLoginView.getUserInfor();
-        if (userInfor==null){
-            ToastUtil.showToast("合法");
-            LoginBean loginBean = iLoginModel.toLogin("","");
-            if (loginBean.getCode()==0){
-                iLoginView.toLogin();
-            }else {
-                ToastUtil.showToast("登录失败");
-            }
-        }else {
-            ToastUtil.showToast("不合法");
-
+    public void toLogin(String user, String password) {
+        if (!isAttachView()){
+            return;
         }
-
+        iLoginView = getMvpView();
+        iLoginView.showLoading();
+        LoginBean loginBean = iLoginModel.toLogin(user, password);
+        iLoginView.dismissLoading();
+        if (loginBean.getCode() == 0) {
+            iLoginView.toLogin();
+        } else {
+            ToastUtil.showToast("登录失败");
+        }
     }
 }
