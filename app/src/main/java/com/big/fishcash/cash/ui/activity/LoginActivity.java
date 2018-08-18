@@ -63,6 +63,16 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         ToastUtil.showToast("登陆成功");
     }
 
+    @Override
+    public void qqlogin() {
+
+    }
+
+    @Override
+    public void wecharLogin() {
+
+    }
+
     @OnClick(R.id.bt_login_login)
     public void onViewClicked() {
         loginPersenter.toLogin(etLoginUser.getText().toString(),etLoginPassword.getText().toString());

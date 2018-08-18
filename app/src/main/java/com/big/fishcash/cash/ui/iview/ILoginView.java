@@ -42,4 +42,18 @@ public interface ILoginView extends BaseIView{
      * @desc 登录
      */
     void toLogin();
+
+    /**
+     *  @author  fenghao
+     *  @date    2018/8/17 0017 上午 10:38
+     *  @desc   qq登录
+     */
+    void qqlogin();
+
+    /**
+     *  @author  fenghao
+     *  @date    2018/8/17 0017 上午 10:38
+     *  @desc   微信登录
+     */
+    void wecharLogin();
 }

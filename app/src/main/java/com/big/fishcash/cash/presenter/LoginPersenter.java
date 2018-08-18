@@ -63,4 +63,14 @@ public class LoginPersenter extends BasePersenter<ILoginView> implements ILoginP
             ToastUtil.showToast("登录失败");
         }
     }
+
+    @Override
+    public void qqlogin() {
+        iLoginView.qqlogin();
+    }
+
+    @Override
+    public void wecharLogin() {
+        iLoginView.wecharLogin();
+    }
 }
