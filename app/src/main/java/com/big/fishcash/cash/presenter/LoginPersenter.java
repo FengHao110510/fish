@@ -1,10 +1,13 @@
 package com.big.fishcash.cash.presenter;
 
+import android.view.Gravity;
+
 import com.big.fishcash.cash.bean.LoginBean;
 import com.big.fishcash.cash.bean.UserInfoBean;
 import com.big.fishcash.cash.model.ILoginModel;
 import com.big.fishcash.cash.model.LoginModel;
 import com.big.fishcash.cash.ui.iview.ILoginView;
+import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
 
 /**
@@ -57,7 +60,8 @@ public class LoginPersenter extends BasePersenter<ILoginView> implements ILoginP
         iLoginView.showLoading();
         LoginBean loginBean = iLoginModel.toLogin(user, password);
         iLoginView.dismissLoading();
-        if (loginBean.getCode() == 0) {
+        if (loginBean.isSuccess()) {
+            //跳转页面
             iLoginView.toLogin();
         } else {
             ToastUtil.showToast("登录失败");
@@ -73,4 +77,12 @@ public class LoginPersenter extends BasePersenter<ILoginView> implements ILoginP
     public void wecharLogin() {
         iLoginView.wecharLogin();
     }
+
+    @Override
+    public void remember(String user, String password) {
+        Global.getSpGlobalUtil().setUserName(user);
+        Global.getSpGlobalUtil().setPassword(password);
+    }
+
+
 }

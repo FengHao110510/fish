@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
-import com.big.fishcash.cash.bean.UserInfoBean;
 import com.big.fishcash.cash.model.LoginModel;
-import com.big.fishcash.cash.presenter.ILoginPersenter;
 import com.big.fishcash.cash.presenter.LoginPersenter;
 import com.big.fishcash.cash.ui.dialog.LoadingDialog;
 import com.big.fishcash.cash.ui.iview.ILoginView;
@@ -35,7 +35,20 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     TextView tvLoginForget;
 
     LoginPersenter loginPersenter;
-    private  LoadingDialog loadingDialog;
+    @BindView(R.id.tv_login_qq_icon)
+    TextView tvLoginQqIcon;
+    @BindView(R.id.tv_login_wechar_icon)
+    TextView tvLoginWecharIcon;
+    @BindView(R.id.ll_login_wechar)
+    LinearLayout llLoginWechar;
+    @BindView(R.id.ll_login_qq)
+    LinearLayout llLoginQq;
+    @BindView(R.id.rl_login_remember)
+    RelativeLayout rlLoginRemember;
+    private LoadingDialog loadingDialog;
+
+    //判断是否记住密码
+    private boolean isCheck = false;
 
     @Override
     public int initLayout() {
@@ -53,14 +66,14 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         //这里与View建立连接
         loginPersenter = new LoginPersenter(new LoginModel());
         loginPersenter.attachView(this);
-        setIconFont(new TextView[]{tvLoginCheck});
+        setIconFont(new TextView[]{tvLoginCheck, tvLoginQqIcon, tvLoginWecharIcon});
     }
-
 
 
     @Override
     public void toLogin() {
         ToastUtil.showToast("登陆成功");
+        loginPersenter.remember(etLoginUser.getText().toString(), etLoginPassword.getText().toString());
     }
 
     @Override
@@ -73,9 +86,27 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     }
 
-    @OnClick(R.id.bt_login_login)
-    public void onViewClicked() {
-        loginPersenter.toLogin(etLoginUser.getText().toString(),etLoginPassword.getText().toString());
+
+    @OnClick({R.id.ll_login_wechar, R.id.ll_login_qq, R.id.bt_login_login, R.id.rl_login_remember})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_login_wechar:
+                //qq登录
+                break;
+            case R.id.ll_login_qq:
+                //微信登录
+                break;
+            case R.id.bt_login_login:
+                //手机账号 邮箱登录
+                loginPersenter.toLogin(etLoginUser.getText().toString(), etLoginPassword.getText().toString());
+                break;
+            case R.id.rl_login_remember:
+                //记住账号密码
+                isCheck = true;
+                break;
+            default:
+                break;
+        }
     }
 
     //===============================================================================================
@@ -106,4 +137,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void showErr(String err) {
         ToastUtil.showToast(err);
     }
+
+
 }

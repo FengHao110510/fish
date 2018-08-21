@@ -47,6 +47,8 @@
     <string name="icon_check_normal">&#xe606;</string>
     <string name="icon_shopping">&#xe605;</string>
     <string name="icon_printer_type">&#xe631;</string>
+    <string name="qq">&#xe6d5;</string>
+    <string name="wechar">&#xe630;</string>
 
 
     <string name="title_activity_main">MainActivity</string>

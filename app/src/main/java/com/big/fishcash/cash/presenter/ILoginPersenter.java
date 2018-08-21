@@ -43,17 +43,24 @@ public interface ILoginPersenter {
     void toLogin(String user, String password);
 
     /**
-     *  @author  fenghao
-     *  @date    2018/8/17 0017 上午 10:38
-     *  @desc   qq登录
+     * @author fenghao
+     * @date 2018/8/17 0017 上午 10:38
+     * @desc qq登录
      */
     void qqlogin();
 
     /**
-     *  @author  fenghao
-     *  @date    2018/8/17 0017 上午 10:38
-     *  @desc   微信登录
+     * @author fenghao
+     * @date 2018/8/17 0017 上午 10:38
+     * @desc 微信登录
      */
     void wecharLogin();
+
+    /**
+     * @author fenghao
+     * @date 2018/8/17 0017 上午 10:38
+     * @desc 记住账号密码
+     */
+    void remember(String user, String password);
 
 }
