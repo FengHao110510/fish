@@ -43,10 +43,11 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     // Okhttp库
-    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    compile 'com.zhy:okhttputils:2.6.2'
     // Retrofit库
     compile 'com.squareup.retrofit2:retrofit:2.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
 
 
 }

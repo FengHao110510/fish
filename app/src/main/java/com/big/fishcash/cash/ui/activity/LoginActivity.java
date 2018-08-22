@@ -1,6 +1,7 @@
 package com.big.fishcash.cash.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,15 +11,27 @@ import android.widget.TextView;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
+import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.http.ApiConfig;
+import com.big.fishcash.cash.http.DataService;
 import com.big.fishcash.cash.model.LoginModel;
 import com.big.fishcash.cash.presenter.LoginPersenter;
 import com.big.fishcash.cash.ui.dialog.LoadingDialog;
 import com.big.fishcash.cash.ui.iview.ILoginView;
+import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
+import com.zhy.http.okhttp.utils.L;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends BaseActivity implements ILoginView {
 
@@ -98,7 +111,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
                 break;
             case R.id.bt_login_login:
                 //手机账号 邮箱登录
-                loginPersenter.toLogin(etLoginUser.getText().toString(), etLoginPassword.getText().toString());
+                loginPersenter.toLogin(this,etLoginUser.getText().toString(), etLoginPassword.getText().toString());
                 break;
             case R.id.rl_login_remember:
                 //记住账号密码

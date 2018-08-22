@@ -1,8 +1,13 @@
 package com.big.fishcash.cash.http;
 
+import com.big.fishcash.cash.bean.LoginBean;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 
@@ -39,6 +44,12 @@ import retrofit2.http.Url;
 
 
 public interface DataService {
-    @GET
-    Call<String> baidu(@Url String url);
+    @FormUrlEncoded
+    @POST("user/login")
+    Call<LoginBean> tologin(@Field("userName") String userName,
+                            @Field("passWord") String passWord,
+                            @Field("ip") String ip,
+                            @Field("equipmentNumber") String equipmentNumber,
+                            @Field("master") String master,
+                            @Field("appKey") String appKey);
 }

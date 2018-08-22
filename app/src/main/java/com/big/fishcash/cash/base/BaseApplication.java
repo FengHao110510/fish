@@ -5,8 +5,16 @@ import android.app.Application;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.cookie.CookieJarImpl;
+import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
+
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 
 public class BaseApplication extends Application {
 
@@ -21,6 +29,8 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
             app = this;
+        settingOkHttp();
+
     }
 
 
@@ -117,5 +127,14 @@ public class BaseApplication extends Application {
     public static Context getAppContext() {
         return app.getApplicationContext();
     }
-
+    private void settingOkHttp() {
+        CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoggerInterceptor("HsFish", false))
+                .connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS)
+                .writeTimeout(10000L, TimeUnit.MILLISECONDS)
+                .cookieJar(cookieJar).build();
+        OkHttpUtils.initClient(okHttpClient);
+    }
 }

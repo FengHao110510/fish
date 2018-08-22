@@ -1,5 +1,7 @@
 package com.big.fishcash.cash.presenter;
 
+import android.content.Context;
+
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
@@ -40,7 +42,7 @@ public interface ILoginPersenter {
      * @date 2018/8/15 0015 下午 20:20
      * @desc 登录接口
      */
-    void toLogin(String user, String password);
+    void toLogin(Context context,String user, String password);
 
     /**
      * @author fenghao
