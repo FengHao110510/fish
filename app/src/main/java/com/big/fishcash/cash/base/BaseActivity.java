@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.ui.dialog.LoadingDialog;
+import com.big.fishcash.cash.ui.iview.BaseIView;
 import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
 
@@ -24,7 +25,7 @@ import butterknife.ButterKnife;
  */
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements BaseIView {
 
     public Typeface typeface;
     private TextView finish_back;
@@ -135,30 +136,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         title.setText(s);
     }
 
-    /**
-     * 进度条
-     */
-    public void showLoadingDialog(String msg) {
-        dismissLoadingDialog();
-        loadingDialog = new LoadingDialog(this);
-        loadingDialog.setMessage(msg);
-        loadingDialog.show();
-    }
 
+@Override
     public void showLoadingDialog() {
         dismissLoadingDialog();
         loadingDialog = new LoadingDialog(this);
         loadingDialog.setMessage("加载中...");
         loadingDialog.show();
     }
-
-    public static void dismissLoadingDialog() {
+    @Override
+    public  void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing()) {
             loadingDialog.dismiss();
         }
 
     }
-    public static void showError(String err) {
+    @Override
+    public  void showError(String err) {
         ToastUtil.showToast(err);
 
     }

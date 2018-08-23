@@ -1,6 +1,9 @@
 package com.big.fishcash.cash.model;
 
+import android.content.Context;
+
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.presenter.ILoginPersenter;
 
 /**
  * 版权：鸿搜网络公司 版权所有
@@ -43,5 +46,5 @@ public interface ILoginModel {
      * @date 2018/8/15 0015 下午 20:11
      * @desc 登录操作
      */
-    LoginBean toLogin(String user, String password);
+    void toLogin(Context context,String user, String password, ILoginPersenter iLoginPersenter);
 }

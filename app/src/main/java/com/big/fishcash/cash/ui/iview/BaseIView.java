@@ -38,14 +38,14 @@ public interface BaseIView {
      *  @date    2018/8/16 0016 下午 14:27
      *  @desc   弹出正在加载的框
      */
-    void showLoading();
+    void showLoadingDialog();
 
     /**
      *  @author  fenghao
      *  @date    2018/8/16 0016 下午 14:28
      *  @desc   取消加载框
      */
-    void dismissLoading();
+    void dismissLoadingDialog();
 
 
     /**
@@ -55,5 +55,5 @@ public interface BaseIView {
      *  @desc   显示加载的错误内容
 
      */
-    void showErr(String err);
+    void showError(String err);
 }

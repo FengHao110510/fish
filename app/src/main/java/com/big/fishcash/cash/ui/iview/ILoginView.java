@@ -1,5 +1,6 @@
 package com.big.fishcash.cash.ui.iview;
 
+import com.big.fishcash.cash.bean.LoginBean;
 import com.big.fishcash.cash.bean.UserInfoBean;
 
 /**
@@ -41,7 +42,7 @@ public interface ILoginView extends BaseIView{
      * @date 2018/8/15 0015 下午 20:38
      * @desc 登录
      */
-    void toLogin();
+    void toLogin(LoginBean loginBean);
 
     /**
      *  @author  fenghao

@@ -2,6 +2,8 @@ package com.big.fishcash.cash.presenter;
 
 import android.content.Context;
 
+import com.big.fishcash.cash.bean.LoginBean;
+
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
@@ -42,7 +44,7 @@ public interface ILoginPersenter {
      * @date 2018/8/15 0015 下午 20:20
      * @desc 登录接口
      */
-    void toLogin(Context context,String user, String password);
+    void toLogin(Context context, String user, String password);
 
     /**
      * @author fenghao
@@ -63,6 +65,13 @@ public interface ILoginPersenter {
      * @date 2018/8/17 0017 上午 10:38
      * @desc 记住账号密码
      */
-    void remember(String user, String password);
+    void remember(LoginBean loginBean,String user, String password,boolean isCheck);
 
+    /**
+     * @param loginBean 获取的数据
+     * @author fenghao
+     * @date 2018/8/23 0023 上午 9:51
+     * @desc 获取登陆成功之后返回的数据
+     */
+    void getLoginBean(LoginBean loginBean);
 }
