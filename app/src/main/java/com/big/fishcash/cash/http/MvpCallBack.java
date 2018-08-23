@@ -1,17 +1,11 @@
-package com.big.fishcash.cash.model;
-
-import android.content.Context;
-
-import com.big.fishcash.cash.bean.LoginBean;
-import com.big.fishcash.cash.presenter.ILoginPersenter;
-import com.big.fishcash.cash.presenter.LoginPersenter;
+package com.big.fishcash.cash.http;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
- * 创建日期：2018/8/9 0009
- * 描述：LoginModel层接口---实现该接口的类负责实际的获取数据操作，如数据库读取、网络加载
+ * 创建日期：2018/8/23 0023
+ * 描述：
  * 修订历史：
  * ┌─┐       ┌─┐
  * ┌──┘ ┴───────┘ ┴──┐
@@ -38,14 +32,29 @@ import com.big.fishcash.cash.presenter.LoginPersenter;
  */
 
 
-public interface ILoginModel {
-
+public interface MvpCallBack {
+    /**
+     * 数据请求成功
+     *
+     * @param data 请求到的数据
+     */
+    void onSuccess(String data);
 
     /**
-     * @return login
-     * @author fenghao
-     * @date 2018/8/15 0015 下午 20:11
-     * @desc 登录操作
+     * 使用网络API接口请求方式时，虽然已经请求成功但是由
+     * 于{@code msg}的原因无法正常返回数据。
      */
-    void toLogin(Context context,String user, String password, LoginPersenter LoginPersenter);
+    void onFailure(String msg);
+
+    /**
+     * 请求数据失败，指在请求网络API接口请求方式时，出现无法联网、
+     * 缺少权限，内存泄露等原因导致无法连接到请求数据源。
+     */
+    void onError();
+
+    /**
+     * 当请求数据结束时，无论请求结果是成功，失败或是抛出异常都会执行此方法给用户做处理，通常做网络
+     * 请求时可以在此处隐藏“正在加载”的等待控件
+     */
+    void onComplete();
 }

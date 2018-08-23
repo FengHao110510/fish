@@ -14,6 +14,7 @@ import com.big.fishcash.cash.base.BaseActivity;
 import com.big.fishcash.cash.bean.LoginBean;
 import com.big.fishcash.cash.model.LoginModel;
 import com.big.fishcash.cash.presenter.LoginPersenter;
+import com.big.fishcash.cash.ui.dialog.LoadingDialog;
 import com.big.fishcash.cash.ui.iview.ILoginView;
 import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
@@ -49,6 +50,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
 
     LoginPersenter loginPersenter;
+    private LoadingDialog loadingDialog;
 
     //判断是否记住密码
     private boolean isCheck = false;
@@ -74,10 +76,10 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         isCheck = Global.getSpGlobalUtil().getCheckPassword();
         etLoginUser.setText(Global.getSpGlobalUtil().getUserName());
         etLoginPassword.setText(Global.getSpGlobalUtil().getPassword());
-        if (isCheck){
-            tvLoginCheck.setTextColor(ContextCompat.getColor(this,R.color.color_base_yellow));
-        }else {
-            tvLoginCheck.setTextColor(ContextCompat.getColor(this,R.color.gray));
+        if (isCheck) {
+            tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.color_base_yellow));
+        } else {
+            tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.gray));
         }
     }
 
@@ -99,9 +101,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
     }
 
-    @OnClick()
-    public void onViewClicked() {
-    }
 
     @OnClick({R.id.ll_login_wechar, R.id.ll_login_qq, R.id.bt_login_login, R.id.rl_login_remember, R.id.tv_login_forget})
     public void onViewClicked(View view) {
@@ -118,12 +117,12 @@ public class LoginActivity extends BaseActivity implements ILoginView {
                 break;
             case R.id.rl_login_remember:
                 //记住账号密码
-                if (isCheck){
+                if (isCheck) {
                     isCheck = false;
-                    tvLoginCheck.setTextColor(ContextCompat.getColor(this,R.color.gray));
-                }else {
+                    tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.gray));
+                } else {
                     isCheck = true;
-                    tvLoginCheck.setTextColor(ContextCompat.getColor(this,R.color.color_base_yellow));
+                    tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.color_base_yellow));
 
                 }
                 break;
@@ -142,5 +141,28 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         ButterKnife.bind(this);
     }
 
+    @Override
+    public void showLoadingDialog() {
+        dismissLoadingDialog();
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.setMessage("加载中...");
+        loadingDialog.show();
+    }
+
+    @Override
+
+    public void dismissLoadingDialog() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+
+    }
+
+    @Override
+
+    public void showError(String err) {
+        ToastUtil.showToast(err);
+
+    }
 
 }

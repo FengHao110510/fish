@@ -1,21 +1,12 @@
-package com.big.fishcash.cash.http;
+package com.big.fishcash.cash.presenter;
 
-import com.big.fishcash.cash.bean.LoginBean;
-
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
-import retrofit2.http.Url;
+import com.big.fishcash.cash.bean.SendMsgBean;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
- * 创建日期：2018/8/21 0021
+ * 创建日期：2018/8/23 0023
  * 描述：
  * 修订历史：
  * ┌─┐       ┌─┐
@@ -43,13 +34,25 @@ import retrofit2.http.Url;
  */
 
 
-public interface DataService {
-    @FormUrlEncoded
-    @POST("user/login")
-    Call<LoginBean> tologin(@Field("userName") String userName,
-                            @Field("passWord") String passWord,
-                            @Field("ip") String ip,
-                            @Field("equipmentNumber") String equipmentNumber,
-                            @Field("master") String master,
-                            @Field("appKey") String appKey);
+public interface IForgetPasswordPesenter {
+    /**
+     * @author fenghao
+     * @date 2018/8/23 0023 下午 14:26
+     * @desc 发送短信验证码
+     */
+    void sendMsg(String phone);
+
+    /**
+     * @author fenghao
+     * @date 2018/8/23 0023 下午 14:26
+     * @desc 检查短信 验证码  检查密码  并走接口登录
+     */
+    void yesForget(String phone,String sendMsg,String password1,String password2);
+
+    /**
+     * @author fenghao
+     * @date 2018/8/23 0023 下午 14:26
+     * @desc 保存返回的验证码
+     */
+    void saveSendMsg(SendMsgBean sendMsgBean);
 }

@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
  */
 
 
-public abstract class BaseActivity extends AppCompatActivity implements BaseIView {
+public abstract class BaseActivity extends AppCompatActivity {
 
     public Typeface typeface;
     private TextView finish_back;
@@ -136,26 +136,36 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
         title.setText(s);
     }
 
+    /**
+     * 进度条
+     */
+    public void showLoadingDialog(String msg) {
+        dismissLoadingDialog();
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.setMessage(msg);
+        loadingDialog.show();
+    }
 
-@Override
     public void showLoadingDialog() {
         dismissLoadingDialog();
         loadingDialog = new LoadingDialog(this);
         loadingDialog.setMessage("加载中...");
         loadingDialog.show();
     }
-    @Override
-    public  void dismissLoadingDialog() {
+
+
+    public void dismissLoadingDialog() {
         if (loadingDialog != null && loadingDialog.isShowing()) {
             loadingDialog.dismiss();
         }
 
     }
-    @Override
-    public  void showError(String err) {
+
+    public void showError(String err) {
         ToastUtil.showToast(err);
 
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

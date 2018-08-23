@@ -58,6 +58,7 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements ILog
             return;
         }
         iLoginView = getMvpView();
+
         //判断账号密码是否合法
         if (TextUtils.isEmpty(user)) {
             ToastUtil.showToast("请输入账号");
@@ -69,6 +70,8 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements ILog
         }
         iLoginView.showLoadingDialog();
         iLoginModel.toLogin(context, user, password, this);
+        iLoginView.dismissLoadingDialog();
+
     }
 
     /**
@@ -116,9 +119,10 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements ILog
 
     @Override
     public void getLoginBean(LoginBean loginBean) {
-        iLoginView.dismissLoadingDialog();
         if (loginBean.isSuccess()) {
             iLoginView.toLogin(loginBean);
+            ToastUtil.showToast(loginBean.getMsg());
+
         } else {
             ToastUtil.showToast(loginBean.getMsg());
         }
