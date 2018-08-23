@@ -4,12 +4,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.big.fishcash.cash.R;
+import com.big.fishcash.cash.base.BaseActivity;
 
-public class ForgetPasswordActivity extends AppCompatActivity {
+public class ForgetPasswordActivity extends BaseActivity{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.module_activity_forget_password);
+    public int initLayout() {
+        return R.layout.module_activity_forget_password;
+    }
+
+    @Override
+    protected void init() {
+
+    }
+
+    @Override
+    public void initData() {
+
     }
 }
