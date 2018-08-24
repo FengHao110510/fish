@@ -7,6 +7,7 @@ import com.big.fishcash.cash.bean.LoginBean;
 import com.big.fishcash.cash.http.ApiConfig;
 import com.big.fishcash.cash.http.ApiService;
 import com.big.fishcash.cash.http.FishClient;
+import com.big.fishcash.cash.http.MvpCallBack;
 import com.big.fishcash.cash.presenter.ILoginPersenter;
 import com.big.fishcash.cash.presenter.LoginPersenter;
 import com.big.fishcash.cash.util.Global;
@@ -56,7 +57,7 @@ import rx.schedulers.Schedulers;
 public class LoginModel implements ILoginModel {
 
     @Override
-    public void toLogin(Context context, String user, String password, final LoginPersenter LoginPersenter) {
+    public void toLogin(Context context, String user, String password, final MvpCallBack mvpCallBack) {
         FishClient.getFishRetrofitInstance()
                 .tologin(user, password,
                         Global.getIPAddress(context),
@@ -69,21 +70,26 @@ public class LoginModel implements ILoginModel {
                     public void onCompleted() {
                         //所有事件都完成，可以做些操作。。。
 //                        ToastUtil.showToast("cg2");
-
+                        mvpCallBack.onComplete();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         //请求过程中发生错误
-                        ToastUtil.showToast("网络连接失败");
                         Log.e("vivi", e.toString());
+                        mvpCallBack.onError();
                     }
 
                     @Override
                     public void onNext(LoginBean loginBean) {
                         //这里的book就是我们请求接口返回的实体类
-                        ToastUtil.showToast("cg");
-                        LoginPersenter.getLoginBean(loginBean);
+                        if (loginBean.isSuccess()){
+                            mvpCallBack.onSuccess(loginBean);
+
+                        }else {
+                            mvpCallBack.onFailure(loginBean.getMsg());
+
+                        }
                     }
                 });
     }

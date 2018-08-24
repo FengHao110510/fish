@@ -1,5 +1,7 @@
 package com.big.fishcash.cash.ui.iview;
 
+import com.big.fishcash.cash.base.BaseIView;
+
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
@@ -44,5 +46,5 @@ public interface IForgetPasswordView extends BaseIView {
      *  @date    2018/8/23 0023 下午 14:44
      *  @desc    返回登录页
      */
-//    void finishActivity();
+    void intentLogin();
 }

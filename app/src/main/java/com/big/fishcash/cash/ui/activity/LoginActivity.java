@@ -1,5 +1,6 @@
 package com.big.fishcash.cash.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -88,7 +89,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void toLogin(LoginBean loginBean) {
         ToastUtil.showToast("登陆成功");
         loginPersenter.remember(loginBean, etLoginUser.getText().toString(), etLoginPassword.getText().toString(), isCheck);
-
     }
 
     @Override
@@ -127,6 +127,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
                 }
                 break;
             case R.id.tv_login_forget:
+                startActivity(new Intent(this, ForgetPasswordActivity.class));
                 break;
             default:
                 break;
@@ -139,30 +140,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
-    }
-
-    @Override
-    public void showLoadingDialog() {
-        dismissLoadingDialog();
-        loadingDialog = new LoadingDialog(this);
-        loadingDialog.setMessage("加载中...");
-        loadingDialog.show();
-    }
-
-    @Override
-
-    public void dismissLoadingDialog() {
-        if (loadingDialog != null && loadingDialog.isShowing()) {
-            loadingDialog.dismiss();
-        }
-
-    }
-
-    @Override
-
-    public void showError(String err) {
-        ToastUtil.showToast(err);
-
     }
 
 }

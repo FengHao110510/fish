@@ -1,6 +1,8 @@
 package com.big.fishcash.cash.ui.activity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,7 @@ public class ForgetPasswordActivity extends BaseActivity implements IForgetPassw
     TextView tvForgetLogin;
 
     ForgetPasswordPesenter forgetPasswordPesenter;
+
     @Override
     public int initLayout() {
         return R.layout.module_activity_forget_password;
@@ -43,6 +46,8 @@ public class ForgetPasswordActivity extends BaseActivity implements IForgetPassw
     @Override
     protected void init() {
         initData();
+        initBack();
+        initTitle("忘记密码");
     }
 
     @Override
@@ -54,7 +59,26 @@ public class ForgetPasswordActivity extends BaseActivity implements IForgetPassw
 
     @Override
     public void timeCount() {
+        new CountDownTimer(60000, 1000) {
+            @Override
+            public void onTick(long l) {
+                btForgetSendMsg.setText(l / 1000 + "s后重新获取");
+                btForgetSendMsg.setBackground(ContextCompat.getDrawable(ForgetPasswordActivity.this, R.drawable.btn_checked));
+                btForgetSendMsg.setClickable(false);
+            }
 
+            @Override
+            public void onFinish() {
+                btForgetSendMsg.setText("获取验证码");
+                btForgetSendMsg.setBackground(ContextCompat.getDrawable(ForgetPasswordActivity.this, R.drawable.btn_nomal));
+                btForgetSendMsg.setClickable(true);
+            }
+        }.start();
+    }
+
+    @Override
+    public void intentLogin() {
+        finishActivity();
     }
 
     @OnClick({R.id.bt_forget_send_msg, R.id.bt_forget_yes, R.id.tv_forget_login})
@@ -65,8 +89,12 @@ public class ForgetPasswordActivity extends BaseActivity implements IForgetPassw
                 forgetPasswordPesenter.sendMsg(etForgetUser.getText().toString());
                 break;
             case R.id.bt_forget_yes:
+                //确定修改密码
+                forgetPasswordPesenter.yesForget(etForgetUser.getText().toString(), etForgetSendMsg.getText().toString()
+                        , etForgetSetPassword.getText().toString(), etForgetSetPassword2.getText().toString());
                 break;
             case R.id.tv_forget_login:
+                finishActivity();
                 break;
             default:
                 break;
@@ -81,5 +109,9 @@ public class ForgetPasswordActivity extends BaseActivity implements IForgetPassw
         ButterKnife.bind(this);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        forgetPasswordPesenter.detachView();
+    }
 }

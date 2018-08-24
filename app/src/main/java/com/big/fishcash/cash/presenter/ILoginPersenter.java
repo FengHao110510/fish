@@ -67,11 +67,4 @@ public interface ILoginPersenter {
      */
     void remember(LoginBean loginBean,String user, String password,boolean isCheck);
 
-    /**
-     * @param loginBean 获取的数据
-     * @author fenghao
-     * @date 2018/8/23 0023 上午 9:51
-     * @desc 获取登陆成功之后返回的数据
-     */
-    void getLoginBean(LoginBean loginBean);
 }

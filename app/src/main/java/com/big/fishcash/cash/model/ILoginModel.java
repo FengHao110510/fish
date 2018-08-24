@@ -3,6 +3,7 @@ package com.big.fishcash.cash.model;
 import android.content.Context;
 
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.http.MvpCallBack;
 import com.big.fishcash.cash.presenter.ILoginPersenter;
 import com.big.fishcash.cash.presenter.LoginPersenter;
 
@@ -47,5 +48,5 @@ public interface ILoginModel {
      * @date 2018/8/15 0015 下午 20:11
      * @desc 登录操作
      */
-    void toLogin(Context context,String user, String password, LoginPersenter LoginPersenter);
+    void toLogin(Context context, String user, String password, MvpCallBack mvpCallBack);
 }

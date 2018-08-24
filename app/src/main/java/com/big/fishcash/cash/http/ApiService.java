@@ -1,6 +1,8 @@
 package com.big.fishcash.cash.http;
 
+import com.big.fishcash.cash.bean.BaseBean;
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.bean.SendMsgBean;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -45,6 +47,16 @@ import rx.Observable;
 
 
 public interface ApiService {
+    /**
+     * TODO 登录接口
+     *
+     * @param userName        账号
+     * @param passWord        密码
+     * @param ip              ip
+     * @param equipmentNumber 设备编号
+     * @param master          极光master
+     * @param appKey          极光appkey
+     */
     @FormUrlEncoded
     @POST("user/login")
     Observable<LoginBean> tologin(@Field("userName") String userName,
@@ -53,4 +65,27 @@ public interface ApiService {
                                   @Field("equipmentNumber") String equipmentNumber,
                                   @Field("master") String master,
                                   @Field("appKey") String appKey);
+
+    /**
+     * TODO 发送验证码
+     *
+     * @param phone 手机号
+     */
+    @FormUrlEncoded
+    @POST("user/sendMessageCode")
+    Observable<SendMsgBean> sendMessageCode(@Field("phone") String phone);
+
+    /**
+     * TODO 忘记密码接口
+     *
+     * @param userName         账号
+     * @param passWord         密码
+     * @param verificationCode 验证码
+     */
+    @FormUrlEncoded
+    @POST("user/updateMessagePassWord")
+    Observable<BaseBean> updateMessagePassWord(@Field("userName") String userName,
+                                               @Field("passWord") String passWord,
+                                               @Field("verificationCode") String verificationCode);
+
 }

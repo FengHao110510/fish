@@ -32,13 +32,13 @@ package com.big.fishcash.cash.http;
  */
 
 
-public interface MvpCallBack {
+public interface MvpCallBack<T> {
     /**
      * 数据请求成功
      *
      * @param data 请求到的数据
      */
-    void onSuccess(String data);
+    void onSuccess(T data);
 
     /**
      * 使用网络API接口请求方式时，虽然已经请求成功但是由

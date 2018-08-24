@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.http.MvpCallBack;
 import com.big.fishcash.cash.model.ILoginModel;
 import com.big.fishcash.cash.ui.activity.LoginActivity;
 import com.big.fishcash.cash.ui.iview.ILoginView;
@@ -46,10 +47,10 @@ import com.big.fishcash.cash.util.ToastUtil;
 public class LoginPersenter extends BasePersenter<LoginActivity> implements ILoginPersenter {
 
     private ILoginModel iLoginModel;
-    private ILoginView iLoginView;
 
     public LoginPersenter(ILoginModel iLoginModel) {
         this.iLoginModel = iLoginModel;
+
     }
 
     @Override
@@ -57,7 +58,6 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements ILog
         if (!isAttachView()) {
             return;
         }
-        iLoginView = getMvpView();
 
         //判断账号密码是否合法
         if (TextUtils.isEmpty(user)) {
@@ -68,9 +68,29 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements ILog
             ToastUtil.showToast("请输入正确密码 6-18位");
             return;
         }
-        iLoginView.showLoadingDialog();
-        iLoginModel.toLogin(context, user, password, this);
-        iLoginView.dismissLoadingDialog();
+        getMvpView().showLoadingDialog();
+        iLoginModel.toLogin(context, user, password, new MvpCallBack<LoginBean>() {
+            @Override
+            public void onSuccess(LoginBean data) {
+                getMvpView().toLogin(data);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                ToastUtil.showToast(msg);
+
+            }
+
+            @Override
+            public void onError() {
+                ToastUtil.showToast("网络连接出错");
+            }
+
+            @Override
+            public void onComplete() {
+                getMvpView().dismissLoadingDialog();
+            }
+        });
 
     }
 
@@ -81,22 +101,32 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements ILog
      * @return
      */
     private boolean isPasswordValid(String password) {
+
         return password.length() > 5 && password.length() < 17;
 
     }
 
     @Override
     public void qqlogin() {
-        iLoginView.qqlogin();
+        if (!isAttachView()) {
+            return;
+        }
+        getMvpView().qqlogin();
     }
 
     @Override
     public void wecharLogin() {
-        iLoginView.wecharLogin();
+        if (!isAttachView()) {
+            return;
+        }
+        getMvpView().wecharLogin();
     }
 
     @Override
     public void remember(LoginBean loginBean, String user, String password, boolean isCheck) {
+        if (!isAttachView()) {
+            return;
+        }
         //记住该记住的数据
         LoginBean.DataBean dataBean = loginBean.getData();
         if (isCheck) {
@@ -116,17 +146,4 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements ILog
         Global.getSpGlobalUtil().setShopPhone(dataBean.getShopPhone());
         Global.getSpGlobalUtil().setPaymentUser(dataBean.getPaymentUser());
     }
-
-    @Override
-    public void getLoginBean(LoginBean loginBean) {
-        if (loginBean.isSuccess()) {
-            iLoginView.toLogin(loginBean);
-            ToastUtil.showToast(loginBean.getMsg());
-
-        } else {
-            ToastUtil.showToast(loginBean.getMsg());
-        }
-    }
-
-
 }

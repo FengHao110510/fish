@@ -1,5 +1,9 @@
 package com.big.fishcash.cash.model;
 
+import com.big.fishcash.cash.http.MvpCallBack;
+
+import javax.security.auth.callback.Callback;
+
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
@@ -38,12 +42,12 @@ public interface IForgetPasswordModel {
      * @date 2018/8/23 0023 下午 15:02
      * @desc 获取验证码
      */
-    void getSendMsg(String phone);
+    void getSendMsg(String phone, MvpCallBack mvpCallBack);
 
     /**
      * @author fenghao
      * @date 2018/8/23 0023 下午 15:02
      * @desc 确认修改密码
      */
-    void getYesForgetResult(String phone,String sendMsg,String password1);
+    void getYesForgetResult(String phone, String sendMsg, String password1, MvpCallBack mvpCallBack);
 }

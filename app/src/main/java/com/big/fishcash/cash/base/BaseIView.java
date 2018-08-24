@@ -1,4 +1,4 @@
-package com.big.fishcash.cash.ui.iview;
+package com.big.fishcash.cash.base;
 
 /**
  * 版权：鸿搜网络公司 版权所有

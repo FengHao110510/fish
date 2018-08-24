@@ -1,6 +1,6 @@
 package com.big.fishcash.cash.presenter;
 
-import com.big.fishcash.cash.ui.iview.BaseIView;
+import com.big.fishcash.cash.base.BaseIView;
 
 /**
  * 版权：鸿搜网络公司 版权所有

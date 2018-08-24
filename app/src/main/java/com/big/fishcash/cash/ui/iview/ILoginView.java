@@ -1,7 +1,7 @@
 package com.big.fishcash.cash.ui.iview;
 
+import com.big.fishcash.cash.base.BaseIView;
 import com.big.fishcash.cash.bean.LoginBean;
-import com.big.fishcash.cash.bean.UserInfoBean;
 
 /**
  * 版权：鸿搜网络公司 版权所有
@@ -35,7 +35,7 @@ import com.big.fishcash.cash.bean.UserInfoBean;
  */
 
 
-public interface ILoginView extends BaseIView{
+public interface ILoginView extends BaseIView {
 
     /**
      * @author fenghao
