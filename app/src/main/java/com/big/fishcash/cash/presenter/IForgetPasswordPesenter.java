@@ -47,12 +47,5 @@ public interface IForgetPasswordPesenter {
      * @date 2018/8/23 0023 下午 14:26
      * @desc 检查短信 验证码  检查密码  并走接口登录
      */
-    void yesForget(String phone,String sendMsg,String password1,String password2);
-
-    /**
-     * @author fenghao
-     * @date 2018/8/23 0023 下午 14:26
-     * @desc 保存返回的验证码
-     */
-    void saveSendMsg(SendMsgBean sendMsgBean);
+    void yesForget(String phone, String sendMsg, String password1, String password2);
 }

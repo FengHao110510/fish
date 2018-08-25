@@ -145,11 +145,5 @@ public class ForgetPasswordPesenter extends BasePersenter<ForgetPasswordActivity
 
     }
 
-    @Override
-    public void saveSendMsg(SendMsgBean sendMsgBean) {
-        if (!isAttachView()) {
-            return;
-        }
 
-    }
 }

@@ -17,6 +17,7 @@ import com.big.fishcash.cash.model.LoginModel;
 import com.big.fishcash.cash.presenter.LoginPersenter;
 import com.big.fishcash.cash.ui.dialog.LoadingDialog;
 import com.big.fishcash.cash.ui.iview.ILoginView;
+import com.big.fishcash.cash.util.FontHelper;
 import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
 
@@ -51,6 +52,8 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
 
     LoginPersenter loginPersenter;
+    @BindView(R.id.ll_login)
+    LinearLayout llLogin;
     private LoadingDialog loadingDialog;
 
     //判断是否记住密码
@@ -72,7 +75,8 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         //这里与View建立连接
         loginPersenter = new LoginPersenter(new LoginModel());
         loginPersenter.attachView(this);
-        setIconFont(new TextView[]{tvLoginCheck, tvLoginQqIcon, tvLoginWecharIcon});
+//        setIconFont(new TextView[]{tvLoginCheck, tvLoginQqIcon, tvLoginWecharIcon});
+        FontHelper.injectFont(llLogin);
         //账号密码回显
         isCheck = Global.getSpGlobalUtil().getCheckPassword();
         etLoginUser.setText(Global.getSpGlobalUtil().getUserName());
