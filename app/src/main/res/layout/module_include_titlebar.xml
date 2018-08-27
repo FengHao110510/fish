@@ -60,7 +60,7 @@
                 android:id="@+id/tv_titlebar_tongbu_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/icon_main_turnover_shaixuan"
+                android:text="@string/qq"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 

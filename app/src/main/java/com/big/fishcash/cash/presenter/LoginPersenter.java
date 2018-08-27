@@ -4,10 +4,11 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.contract.ForgetPasswordContract;
+import com.big.fishcash.cash.contract.LoginContract;
 import com.big.fishcash.cash.http.MvpCallBack;
 import com.big.fishcash.cash.model.ILoginModel;
 import com.big.fishcash.cash.ui.activity.LoginActivity;
-import com.big.fishcash.cash.ui.iview.ILoginView;
 import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
 
@@ -44,7 +45,7 @@ import com.big.fishcash.cash.util.ToastUtil;
  */
 
 
-public class LoginPersenter extends BasePersenter<LoginActivity> implements ILoginPersenter {
+public class LoginPersenter extends BasePersenter<LoginActivity> implements LoginContract.ILoginPersenter {
 
     private ILoginModel iLoginModel;
 
@@ -145,5 +146,6 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements ILog
         Global.getSpGlobalUtil().setShopAddress(dataBean.getShopAddress());
         Global.getSpGlobalUtil().setShopPhone(dataBean.getShopPhone());
         Global.getSpGlobalUtil().setPaymentUser(dataBean.getPaymentUser());
+        getMvpView().finishActivity();
     }
 }

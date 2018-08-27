@@ -13,10 +13,11 @@ import android.widget.TextView;
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.contract.LoginContract;
 import com.big.fishcash.cash.model.LoginModel;
 import com.big.fishcash.cash.presenter.LoginPersenter;
+import com.big.fishcash.cash.ui.MainActivity;
 import com.big.fishcash.cash.ui.dialog.LoadingDialog;
-import com.big.fishcash.cash.ui.iview.ILoginView;
 import com.big.fishcash.cash.util.FontHelper;
 import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
@@ -25,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements ILoginView {
+public class LoginActivity extends BaseActivity implements LoginContract.ILoginView {
 
 
     @BindView(R.id.et_login_user)
@@ -93,6 +94,8 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     public void toLogin(LoginBean loginBean) {
         ToastUtil.showToast("登陆成功");
         loginPersenter.remember(loginBean, etLoginUser.getText().toString(), etLoginPassword.getText().toString(), isCheck);
+        startActivity(new Intent(this, MainActivity.class));
+
     }
 
     @Override

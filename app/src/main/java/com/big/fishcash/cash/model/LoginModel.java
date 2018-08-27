@@ -4,20 +4,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.big.fishcash.cash.bean.LoginBean;
-import com.big.fishcash.cash.http.ApiConfig;
-import com.big.fishcash.cash.http.ApiService;
 import com.big.fishcash.cash.http.FishClient;
 import com.big.fishcash.cash.http.MvpCallBack;
-import com.big.fishcash.cash.presenter.ILoginPersenter;
-import com.big.fishcash.cash.presenter.LoginPersenter;
 import com.big.fishcash.cash.util.Global;
-import com.big.fishcash.cash.util.ToastUtil;
 
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

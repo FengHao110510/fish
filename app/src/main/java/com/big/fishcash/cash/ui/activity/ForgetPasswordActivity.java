@@ -10,16 +10,16 @@ import android.widget.TextView;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
+import com.big.fishcash.cash.contract.ForgetPasswordContract;
+import com.big.fishcash.cash.contract.LoginContract;
 import com.big.fishcash.cash.model.ForgetPasswordModel;
 import com.big.fishcash.cash.presenter.ForgetPasswordPesenter;
-import com.big.fishcash.cash.presenter.IForgetPasswordPesenter;
-import com.big.fishcash.cash.ui.iview.IForgetPasswordView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ForgetPasswordActivity extends BaseActivity implements IForgetPasswordView {
+public class ForgetPasswordActivity extends BaseActivity implements ForgetPasswordContract.IForgetPasswordView {
 
     @BindView(R.id.et_forget_user)
     EditText etForgetUser;

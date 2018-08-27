@@ -4,10 +4,10 @@ import android.text.TextUtils;
 
 import com.big.fishcash.cash.bean.BaseBean;
 import com.big.fishcash.cash.bean.SendMsgBean;
+import com.big.fishcash.cash.contract.ForgetPasswordContract;
 import com.big.fishcash.cash.http.MvpCallBack;
 import com.big.fishcash.cash.model.IForgetPasswordModel;
 import com.big.fishcash.cash.ui.activity.ForgetPasswordActivity;
-import com.big.fishcash.cash.ui.iview.IForgetPasswordView;
 import com.big.fishcash.cash.util.ToastUtil;
 
 /**
@@ -42,7 +42,7 @@ import com.big.fishcash.cash.util.ToastUtil;
  */
 
 
-public class ForgetPasswordPesenter extends BasePersenter<ForgetPasswordActivity> implements IForgetPasswordPesenter {
+public class ForgetPasswordPesenter extends BasePersenter<ForgetPasswordActivity> implements ForgetPasswordContract.IForgetPasswordPesenter {
     private IForgetPasswordModel iForgetPasswordModel;
 
     //接口返回的验证码

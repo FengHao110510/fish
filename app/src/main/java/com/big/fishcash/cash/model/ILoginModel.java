@@ -2,10 +2,7 @@ package com.big.fishcash.cash.model;
 
 import android.content.Context;
 
-import com.big.fishcash.cash.bean.LoginBean;
 import com.big.fishcash.cash.http.MvpCallBack;
-import com.big.fishcash.cash.presenter.ILoginPersenter;
-import com.big.fishcash.cash.presenter.LoginPersenter;
 
 /**
  * 版权：鸿搜网络公司 版权所有
