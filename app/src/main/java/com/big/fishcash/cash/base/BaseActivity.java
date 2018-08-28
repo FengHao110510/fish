@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.big.fishcash.cash.R;
@@ -36,33 +37,22 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initIconFont();
+        /**
+         * 在调用Activity的setContentView()方法之前，如果是继承AppCompatActivity，
+         * 则调用supportRequestWindowFeature(Window.FEATURE_NO_TITLE)，
+         * 如果是继承Activity，则调用requestWindowFeature(Window.FEATURE_NO_TITLE))来隐藏导航栏。
+
+         为Activity设置一个NoActionBar的Theme,如Theme.AppCompat.Light.NoActionBar
+         */
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         //设置布局
         setContentView(initLayout());
         BaseApplication.getInstance().pushTask(this);
-
         ButterKnife.bind(this);
         init();
 
 
     }
-
-
-    /**
-     * 设置图片
-     */
-    private void initIconFont() {
-        if (typeface == null) {
-            typeface = Typeface.createFromAsset(this.getAssets(), "iconfont.ttf");
-        }
-    }
-
-    public void setIconFont(TextView[] tv) {
-        for (int i = 0; i < tv.length; i++) {
-            tv[i].setTypeface(typeface);
-        }
-    }
-
     /**
      * 设置布局
      *
@@ -72,12 +62,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
 
     //初始化
     protected abstract void init();
-
-    /**
-     * 初始化布局
-     */
-    public void initView() {
-    }
 
     /**
      * 设置数据
@@ -99,7 +83,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
      */
     public String getShopNumber() {
         return Global.getSpGlobalUtil().getShopNumber();
-//        return "111";
     }
 
     /**

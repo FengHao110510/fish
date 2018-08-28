@@ -9,79 +9,57 @@
     android:orientation="vertical"
     tools:context="com.big.fishcash.cash.ui.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/fl_main_fragment"
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/dl_mian"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
+        <!--content-->
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <View style="@style/view_line_horizontal_05" />
+                <android.support.design.widget.AppBarLayout
+                    android:id="@+id/abl_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:padding="3dp">
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/tool_main"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/pink"
+                        app:popupTheme="@style/toolbarMenuStyle">
 
-        <LinearLayout
-            android:id="@+id/ll_main_news"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
+                    </android.support.v7.widget.Toolbar>
+                </android.support.design.widget.AppBarLayout>
 
-            <TextView
-                android:id="@+id/tv_main_news_icon"
+                <FrameLayout
+                    android:id="@+id/fl_main_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"></FrameLayout>
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/main_news"
-                android:textColor="@color/gray"
-                android:textSize="22sp" />
+                <View style="@style/view_line_horizontal_1" />
 
-            <TextView
-                android:id="@+id/tv_main_news"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:text="新闻"
+                <include layout="@layout/module_main_bottom_bar" />
+            </LinearLayout>
+        </android.support.design.widget.CoordinatorLayout>
 
-                android:textColor="@color/gray"
-                android:textSize="11sp" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_main_books"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_main_books_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/main_books"
-                android:textColor="@color/gray"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/tv_main_books"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:text="书籍"
-
-                android:textColor="@color/gray"
-                android:textSize="11sp" />
-        </LinearLayout>
-    </LinearLayout>
-
+        <!--menu-->
+        <FrameLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@android:color/white">
+            <include layout="@layout/module_activity_start_main"/>
+        </FrameLayout>
+    </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

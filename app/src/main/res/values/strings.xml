@@ -9,6 +9,9 @@
     <string name="wechar">&#xe73f;</string>
     <string name="main_news">&#xe659;</string>
     <string name="main_books">&#xe60d;</string>
+    <string name="main_start_color">&#xe607;</string>
+    <string name="main_start_night">&#xe600;</string>
+    <string name="main_start_we">&#xe6e8;</string>
 
 
     <string name="title_activity_main">MainActivity</string>
@@ -31,10 +34,18 @@
     <string name="day">日</string>
     <string name="hour">时</string>
     <string name="minute">分</string>
+    <string name="open">分</string>
+    <string name="close">分</string>
 
     <string name="select_date">选择日期</string>
     <string name="current_date">当前日期</string>
     <string name="select_time">选择时间</string>
     <string name="current_time">当前时间</string>
     <!--====================================================================-->
+    <string name="about_we">练手之作，主要是实践：
+        1.android Mvp 架构模式
+        2.MaterialDesign的基础学习
+        3.retrofit网络框架+rxJava
+
+        做的有些简陋请见谅</string>
 </resources>
