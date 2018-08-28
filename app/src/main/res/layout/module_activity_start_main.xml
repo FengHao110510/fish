@@ -12,9 +12,9 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_marginLeft="20dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1">
 
             <com.big.fishcash.cash.views.CircleImageView
@@ -22,13 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
-                android:src="@drawable/btn_mine_camera"
-               />
+                android:src="@drawable/btn_mine_camera" />
         </LinearLayout>
 
 
         <TextView
-            android:id="@+id/iv_main_start_name"
+            android:id="@+id/tv_main_start_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"

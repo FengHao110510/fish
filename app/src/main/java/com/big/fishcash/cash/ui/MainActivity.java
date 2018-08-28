@@ -57,8 +57,8 @@ public class MainActivity extends BaseActivity {
     DrawerLayout dlMian;
     @BindView(R.id.iv_main_start_img)
     CircleImageView ivMainStartImg;
-    @BindView(R.id.iv_main_start_name)
-    TextView ivMainStartName;
+    @BindView(R.id.tv_main_start_name)
+    TextView tvMainStartName;
     @BindView(R.id.ll_main_start_color)
     LinearLayout llMainStartColor;
     @BindView(R.id.ll_main_start_night)
@@ -126,6 +126,8 @@ public class MainActivity extends BaseActivity {
      * @desc 初始化侧边栏
      */
     private void initDrawerLayout() {
+        //设置变宽颜色
+        ivMainStartImg.setBorderColor(ContextCompat.getColor(this, R.color.white));
         //创建返回键，并实现打开关/闭监听
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, dlMian, toolMain, R.string.open, R.string.close) {
             @Override

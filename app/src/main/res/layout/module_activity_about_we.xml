@@ -11,8 +11,7 @@
         android:id="@+id/tool_about_we"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/pink">
-    </android.support.v7.widget.Toolbar>
+        android:background="@color/pink"></android.support.v7.widget.Toolbar>
 
     <com.big.fishcash.cash.views.CircleImageView
         android:layout_width="70dp"
