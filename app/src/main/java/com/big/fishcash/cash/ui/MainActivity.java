@@ -82,9 +82,9 @@ public class MainActivity extends BaseActivity {
     protected void init() {
 
         initData();
-        initFragment();
         initToolBar();
         initDrawerLayout();
+        initFragment();
     }
 
 
@@ -158,7 +158,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
         FontHelper.injectFont(llMain);
-        llMainNews.performClick();
     }
 
     /**
@@ -172,7 +171,7 @@ public class MainActivity extends BaseActivity {
         fragmentList.add(new NewsFragment());
         //书籍
         fragmentList.add(new BooksFragment());
-
+        llMainNews.performClick();
     }
 
 
@@ -257,8 +256,8 @@ public class MainActivity extends BaseActivity {
      * @desc 设置颜色
      */
     private void setColor(TextView t1, TextView t2, TextView t3, TextView t4) {
-        t1.setTextColor(ContextCompat.getColor(this, R.color.pink));
-        t2.setTextColor(ContextCompat.getColor(this, R.color.pink));
+        t1.setTextColor(ContextCompat.getColor(this, R.color.main_color));
+        t2.setTextColor(ContextCompat.getColor(this, R.color.main_color));
         t3.setTextColor(ContextCompat.getColor(this, R.color.gray));
         t4.setTextColor(ContextCompat.getColor(this, R.color.gray));
     }
