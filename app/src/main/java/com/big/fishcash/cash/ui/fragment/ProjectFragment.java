@@ -3,14 +3,12 @@ package com.big.fishcash.cash.ui.fragment;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.ContentFrameLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 
 import com.big.fishcash.cash.R;
-import com.big.fishcash.cash.bean.NewsTabBean;
+import com.big.fishcash.cash.bean.ProjectTabBean;
 import com.big.fishcash.cash.util.ToastUtil;
 
 import java.util.ArrayList;
@@ -52,23 +50,23 @@ import butterknife.Unbinder;
  */
 
 
-public class NewsFragment extends BaseFragment {
-    @BindView(R.id.tb_news_tab)
-    TabLayout tbNewsTab;
-    @BindView(R.id.vp_news)
-    ViewPager vpNews;
+public class ProjectFragment extends BaseFragment {
+    @BindView(R.id.tb_project_tab)
+    TabLayout tbProjectTab;
+    @BindView(R.id.vp_project)
+    ViewPager vpProject;
     Unbinder unbinder;
 
     @Override
     public int initLayout() {
-        return R.layout.moudle_fragment_news;
+        return R.layout.module_fragment_project;
     }
 
 
     @Override
     public void init() {
         initTab();
-        initViewPager();
+//        initViewPager();
     }
 
 
@@ -77,13 +75,13 @@ public class NewsFragment extends BaseFragment {
      * @date 2018/8/29 0029 下午 15:39
      * @desc 初始化tab
      */
-    private List<NewsTabBean> newsTabBeanList;
+    private List<ProjectTabBean> ProjectTabBeanList;
 
     private void initTab() {
         //返回头条，社会，国内，娱乐，体育，军事，科技，财经，时尚等新闻信息
         //类型,,top(头条，默认),shehui(社会),guonei(国内),guoji(国际),
         // yule(娱乐),tiyu(体育)junshi(军事),keji(科技),caijing(财经),shishang(时尚)
-        newsTabBeanList = new ArrayList<>();
+        ProjectTabBeanList = new ArrayList<>();
         String[] types = new String[]{
                 "top", "shehui", "guonei", "guoji", "yule", "tiyu", "junshi", "keji", "caijing", "shishang"
         };
@@ -92,16 +90,16 @@ public class NewsFragment extends BaseFragment {
         };
 
         for (int i = 0; i < titles.length; i++) {
-            newsTabBeanList.add(new NewsTabBean(types[i], titles[i]));
+            ProjectTabBeanList.add(new ProjectTabBean(types[i], titles[i]));
         }
         //创建TAB
-        for (int n = 1; n < newsTabBeanList.size(); n++) {
-            TabLayout.Tab tab = tbNewsTab.newTab();
-            tab.setText(newsTabBeanList.get(n).getTitle());
-            tbNewsTab.addTab(tab);
+        for (int n = 1; n < ProjectTabBeanList.size(); n++) {
+            TabLayout.Tab tab = tbProjectTab.newTab();
+            tab.setText(ProjectTabBeanList.get(n).getTitle());
+            tbProjectTab.addTab(tab);
         }
 
-        tbNewsTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tbProjectTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 ToastUtil.showToast(tab.getText());
@@ -124,19 +122,19 @@ public class NewsFragment extends BaseFragment {
      * @date 2018/8/29 0029 下午 16:46
      * @desc 初始化viewpager
      */
-    private List<NewsContentFragment> fragmentList;
-
-    private void initViewPager() {
-        fragmentList = new ArrayList<>();
-        for (int i=0;i<newsTabBeanList.size();i++){
-            NewsContentFragment newsContentFragment = new NewsContentFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("type",newsTabBeanList.get(i).getType());
-            newsContentFragment.setArguments(bundle);
-            fragmentList.add(newsContentFragment);
-
-        }
-    }
+//    private List<ProjectContentFragment> fragmentList;
+//
+//    private void initViewPager() {
+//        fragmentList = new ArrayList<>();
+//        for (int i=0;i<ProjectTabBeanList.size();i++){
+//            ProjectContentFragment ProjectContentFragment = new ProjectContentFragment();
+//            Bundle bundle = new Bundle();
+//            bundle.putString("type",ProjectTabBeanList.get(i).getType());
+//            ProjectContentFragment.setArguments(bundle);
+//            fragmentList.add(ProjectContentFragment);
+//
+//        }
+//    }
 
     //================================================================================================
     @Override

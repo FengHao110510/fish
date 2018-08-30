@@ -4,9 +4,8 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.big.fishcash.cash.bean.LoginBean;
-import com.big.fishcash.cash.contract.ForgetPasswordContract;
 import com.big.fishcash.cash.contract.LoginContract;
-import com.big.fishcash.cash.http.MvpCallBack;
+import com.big.fishcash.cash.network.MvpCallBack;
 import com.big.fishcash.cash.model.ILoginModel;
 import com.big.fishcash.cash.ui.activity.LoginActivity;
 import com.big.fishcash.cash.util.Global;
@@ -55,7 +54,7 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements Logi
     }
 
     @Override
-    public void toLogin(final Context context, String user, String password) {
+    public void toLogin( String user, String password) {
         if (!isAttachView()) {
             return;
         }
@@ -70,7 +69,7 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements Logi
             return;
         }
         getMvpView().showLoadingDialog();
-        iLoginModel.toLogin(context, user, password, new MvpCallBack<LoginBean>() {
+        iLoginModel.toLogin(user, password, new MvpCallBack<LoginBean>() {
             @Override
             public void onSuccess(LoginBean data) {
                 getMvpView().toLogin(data);
@@ -129,7 +128,6 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements Logi
             return;
         }
         //记住该记住的数据
-        LoginBean.DataBean dataBean = loginBean.getData();
         if (isCheck) {
             Global.getSpGlobalUtil().setCheckPassword(true);
             Global.getSpGlobalUtil().setUserName(user);
@@ -139,13 +137,6 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements Logi
             Global.getSpGlobalUtil().setUserName("");
             Global.getSpGlobalUtil().setPassword("");
         }
-        Global.getSpGlobalUtil().setClerkName(dataBean.getClerkName());
-        Global.getSpGlobalUtil().setClerkNumber(dataBean.getClerkNumber());
-        Global.getSpGlobalUtil().setShopNumber(dataBean.getShopNumber());
-        Global.getSpGlobalUtil().setShopName(dataBean.getShopName());
-        Global.getSpGlobalUtil().setShopAddress(dataBean.getShopAddress());
-        Global.getSpGlobalUtil().setShopPhone(dataBean.getShopPhone());
-        Global.getSpGlobalUtil().setPaymentUser(dataBean.getPaymentUser());
         getMvpView().finishActivity();
     }
 }

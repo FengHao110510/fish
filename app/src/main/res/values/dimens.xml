@@ -22,5 +22,7 @@
     <dimen name="keyboard_height2">141dp</dimen>
     <dimen name="keyboard_margin">0.2dp</dimen>
     <dimen name="keyboard_txt_size">30sp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 
 </resources>

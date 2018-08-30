@@ -1,4 +1,6 @@
-package com.big.fishcash.cash.http;
+package com.big.fishcash.cash.network;
+
+import com.big.fishcash.cash.http.ApiService;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -37,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class FishClient {
-    public static final String HOST = "http://47.93.0.117:5003/hs-app-server/";
+    public static final String HOST = "http://www.wanandroid.com/";
     private static ApiService fishRetrofit;
     protected static final Object MONITOR = new Object();
     private static Retrofit retrofit;

@@ -1,15 +1,11 @@
-package com.big.fishcash.cash.model;
-
-import com.big.fishcash.cash.http.MvpCallBack;
-
-import javax.security.auth.callback.Callback;
+package com.big.fishcash.cash.bean;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
- * 创建日期：2018/8/23 0023
- * 描述：
+ * 创建日期：2018/8/29 0029
+ * 描述：新闻页面的tab
  * 修订历史：
  * ┌─┐       ┌─┐
  * ┌──┘ ┴───────┘ ┴──┐
@@ -36,18 +32,28 @@ import javax.security.auth.callback.Callback;
  */
 
 
-public interface IForgetPasswordModel {
-    /**
-     * @author fenghao
-     * @date 2018/8/23 0023 下午 15:02
-     * @desc 获取验证码
-     */
-    void getSendMsg(String phone, MvpCallBack mvpCallBack);
+public class ProjectTabBean {
+    private String type;
+    private String title;
 
-    /**
-     * @author fenghao
-     * @date 2018/8/23 0023 下午 15:02
-     * @desc 确认修改密码
-     */
-    void getYesForgetResult(String phone, String sendMsg, String password1, MvpCallBack mvpCallBack);
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public ProjectTabBean(String type, String title) {
+        this.type = type;
+        this.title = title;
+    }
 }

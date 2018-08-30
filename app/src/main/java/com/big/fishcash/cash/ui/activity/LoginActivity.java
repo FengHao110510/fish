@@ -55,6 +55,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
     LoginPersenter loginPersenter;
     @BindView(R.id.ll_login)
     LinearLayout llLogin;
+    @BindView(R.id.tv_login_youke_icon)
+    TextView tvLoginYoukeIcon;
+    @BindView(R.id.ll_login_youke)
+    LinearLayout llLoginYouke;
     private LoadingDialog loadingDialog;
 
     //判断是否记住密码
@@ -94,7 +98,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
     public void toLogin(LoginBean loginBean) {
         ToastUtil.showToast("登陆成功");
         loginPersenter.remember(loginBean, etLoginUser.getText().toString(), etLoginPassword.getText().toString(), isCheck);
-        startActivity(new Intent(this, MainActivity.class));
+        Intent loginIntent = new Intent(this, MainActivity.class);
+        loginIntent.putExtra("userName",loginBean.getData().getUsername());
+        startActivity(loginIntent);
 
     }
 
@@ -109,18 +115,24 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
     }
 
 
-    @OnClick({R.id.ll_login_wechar, R.id.ll_login_qq, R.id.bt_login_login, R.id.rl_login_remember, R.id.tv_login_forget})
+    @OnClick({R.id.ll_login_wechar, R.id.ll_login_qq, R.id.bt_login_login,
+            R.id.rl_login_remember, R.id.tv_login_forget, R.id.ll_login_youke})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_login_wechar:
                 //qq登录
+                break;
+            case R.id.ll_login_youke:
+                //游客登录
+                startActivity(new Intent(this, MainActivity.class));
+                finishActivity();
                 break;
             case R.id.ll_login_qq:
                 //微信登录
                 break;
             case R.id.bt_login_login:
                 //手机账号 邮箱登录
-                loginPersenter.toLogin(this, etLoginUser.getText().toString(), etLoginPassword.getText().toString());
+                loginPersenter.toLogin(etLoginUser.getText().toString(), etLoginPassword.getText().toString());
                 break;
             case R.id.rl_login_remember:
                 //记住账号密码
@@ -134,7 +146,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
                 }
                 break;
             case R.id.tv_login_forget:
-                startActivity(new Intent(this, ForgetPasswordActivity.class));
+                startActivity(new Intent(this, RegistActivity.class));
                 break;
             default:
                 break;
@@ -148,5 +160,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
 
 }

@@ -71,7 +71,7 @@ public interface LoginContract {
          * @date 2018/8/15 0015 下午 20:20
          * @desc 登录接口
          */
-        void toLogin(Context context, String user, String password);
+        void toLogin(String user, String password);
 
         /**
          * @author fenghao

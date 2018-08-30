@@ -1,11 +1,13 @@
-package com.big.fishcash.cash.bean;
+package com.big.fishcash.cash.model;
+
+import com.big.fishcash.cash.network.MvpCallBack;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
- * 创建日期：2018/8/29 0029
- * 描述：新闻页面的tab
+ * 创建日期：2018/8/23 0023
+ * 描述：
  * 修订历史：
  * ┌─┐       ┌─┐
  * ┌──┘ ┴───────┘ ┴──┐
@@ -32,28 +34,12 @@ package com.big.fishcash.cash.bean;
  */
 
 
-public class NewsTabBean {
-    private String type;
-    private String title;
+public interface IRegistModel {
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public NewsTabBean(String type, String title) {
-        this.type = type;
-        this.title = title;
-    }
+    /**
+     * @author fenghao
+     * @date 2018/8/23 0023 下午 15:02
+     * @desc 注册
+     */
+    void regist(String phone, String password1, MvpCallBack mvpCallBack);
 }

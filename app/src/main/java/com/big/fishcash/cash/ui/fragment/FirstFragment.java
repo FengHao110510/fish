@@ -34,10 +34,10 @@ import com.big.fishcash.cash.R;
  */
 
 
-public class BooksFragment extends BaseFragment{
+public class FirstFragment extends BaseFragment{
     @Override
     public int initLayout() {
-        return R.layout.module_fragment_books;
+        return R.layout.module_fragment_first;
     }
 
     @Override

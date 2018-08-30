@@ -19,9 +19,12 @@ import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
 import com.big.fishcash.cash.base.BaseApplication;
 import com.big.fishcash.cash.ui.activity.AboutWeActivity;
+import com.big.fishcash.cash.ui.activity.LoginActivity;
 import com.big.fishcash.cash.ui.fragment.BaseFragment;
-import com.big.fishcash.cash.ui.fragment.BooksFragment;
-import com.big.fishcash.cash.ui.fragment.NewsFragment;
+import com.big.fishcash.cash.ui.fragment.FirstFragment;
+import com.big.fishcash.cash.ui.fragment.KnowledgeFragment;
+import com.big.fishcash.cash.ui.fragment.NavigationFragment;
+import com.big.fishcash.cash.ui.fragment.ProjectFragment;
 import com.big.fishcash.cash.util.FontHelper;
 import com.big.fishcash.cash.util.ToastUtil;
 import com.big.fishcash.cash.views.CircleImageView;
@@ -35,22 +38,8 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity {
 
 
-    @BindView(R.id.ll_main)
-    LinearLayout llMain;
     @BindView(R.id.fl_main_fragment)
     FrameLayout flMainFragment;
-    @BindView(R.id.tv_main_news_icon)
-    TextView tvMainNewsIcon;
-    @BindView(R.id.tv_main_news)
-    TextView tvMainNews;
-    @BindView(R.id.ll_main_news)
-    LinearLayout llMainNews;
-    @BindView(R.id.tv_main_books_icon)
-    TextView tvMainBooksIcon;
-    @BindView(R.id.tv_main_books)
-    TextView tvMainBooks;
-    @BindView(R.id.ll_main_books)
-    LinearLayout llMainBooks;
     @BindView(R.id.tool_main)
     Toolbar toolMain;
     @BindView(R.id.dl_mian)
@@ -65,6 +54,34 @@ public class MainActivity extends BaseActivity {
     LinearLayout llMainStartNight;
     @BindView(R.id.ll_main_start_we)
     LinearLayout llMainStartWe;
+    @BindView(R.id.ll_main_start)
+    LinearLayout llMainStart;
+    @BindView(R.id.ll_main_start_logout)
+    LinearLayout llMainStartLogout;
+    @BindView(R.id.tv_main_first_icon)
+    TextView tvMainFirstIcon;
+    @BindView(R.id.tv_main_first)
+    TextView tvMainFirst;
+    @BindView(R.id.ll_main_first)
+    LinearLayout llMainFirst;
+    @BindView(R.id.tv_main_knowledge_icon)
+    TextView tvMainKnowledgeIcon;
+    @BindView(R.id.tv_main_knowledge)
+    TextView tvMainKnowledge;
+    @BindView(R.id.ll_main_knowledge)
+    LinearLayout llMainKnowledge;
+    @BindView(R.id.tv_main_navigation_icon)
+    TextView tvMainNavigationIcon;
+    @BindView(R.id.tv_main_navigation)
+    TextView tvMainNavigation;
+    @BindView(R.id.ll_main_navigation)
+    LinearLayout llMainNavigation;
+    @BindView(R.id.tv_main_project_icon)
+    TextView tvMainProjectIcon;
+    @BindView(R.id.tv_main_project)
+    TextView tvMainProject;
+    @BindView(R.id.ll_main_project)
+    LinearLayout llMainProject;
 
     private ArrayList<BaseFragment> fragmentList;
     private BaseFragment tempFragment;//当前fragment
@@ -87,6 +104,23 @@ public class MainActivity extends BaseActivity {
         initFragment();
     }
 
+    @Override
+    public void initData() {
+        FontHelper.injectFont(dlMian);
+        if (getIntent().hasExtra("userName")) {
+            String userName = getIntent().getStringExtra("userName");
+            tvMainStartName.setText(userName);
+            ivMainStartImg.setImageResource(R.drawable.dg_logo);
+        } else {
+            llMainStart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finishActivity();
+                }
+            });
+        }
+    }
 
     /**
      * @author fenghao
@@ -141,8 +175,6 @@ public class MainActivity extends BaseActivity {
                 //侧滑栏关闭
             }
         };
-
-
         //mDrawerToggle.syncState();此处注释掉是为了不使用默认的开关箭头
         //设置侦听
         dlMian.addDrawerListener(actionBarDrawerToggle);
@@ -155,10 +187,6 @@ public class MainActivity extends BaseActivity {
         return true;
     }
 
-    @Override
-    public void initData() {
-        FontHelper.injectFont(llMain);
-    }
 
     /**
      * @author fenghao
@@ -167,31 +195,58 @@ public class MainActivity extends BaseActivity {
      */
     private void initFragment() {
         fragmentList = new ArrayList<>();
-        //新闻
-        fragmentList.add(new NewsFragment());
-        //书籍
-        fragmentList.add(new BooksFragment());
-        llMainNews.performClick();
+
+        //首页
+        fragmentList.add(new FirstFragment());
+        //知识体系
+        fragmentList.add(new KnowledgeFragment());
+        //导航
+        fragmentList.add(new NavigationFragment());
+        //项目
+        fragmentList.add(new ProjectFragment());
+        llMainFirst.performClick();
     }
 
 
-    @OnClick({R.id.ll_main_news, R.id.ll_main_books, R.id.ll_main_start_color, R.id.ll_main_start_night, R.id.ll_main_start_we})
+    @OnClick({R.id.ll_main_first, R.id.ll_main_knowledge, R.id.ll_main_navigation, R.id.ll_main_project,
+            R.id.ll_main_start_color,
+            R.id.ll_main_start_night, R.id.ll_main_start_we, R.id.ll_main_start_logout})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.ll_main_news:
+            case R.id.ll_main_first:
                 position = 0;
-                setColor(tvMainNews, tvMainNewsIcon, tvMainBooks, tvMainBooksIcon);
+                setColor(tvMainFirst, tvMainFirstIcon, tvMainKnowledge, tvMainKnowledgeIcon
+                        , tvMainNavigation, tvMainNavigationIcon, tvMainProject, tvMainProjectIcon);
                 //设置logo
                 //主标题
-                toolMain.setTitle("新闻");
+                toolMain.setTitle("首页");
                 toolMain.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
                 break;
-            case R.id.ll_main_books:
+            case R.id.ll_main_knowledge:
                 position = 1;
-                setColor(tvMainBooks, tvMainBooksIcon, tvMainNews, tvMainNewsIcon);
+                setColor(tvMainKnowledge, tvMainKnowledgeIcon, tvMainFirst, tvMainFirstIcon
+                        , tvMainNavigation, tvMainNavigationIcon, tvMainProject, tvMainProjectIcon);
                 //设置logo
                 //主标题
-                toolMain.setTitle("书籍");
+                toolMain.setTitle("知识体系");
+                toolMain.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
+                break;
+            case R.id.ll_main_navigation:
+                position = 2;
+                setColor(tvMainNavigation, tvMainNavigationIcon, tvMainFirst, tvMainFirstIcon, tvMainKnowledge, tvMainKnowledgeIcon
+                        , tvMainProject, tvMainProjectIcon);
+                //设置logo
+                //主标题
+                toolMain.setTitle("导航");
+                toolMain.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
+                break;
+            case R.id.ll_main_project:
+                position = 3;
+                setColor(tvMainProject, tvMainProjectIcon, tvMainKnowledge, tvMainKnowledgeIcon, tvMainFirst, tvMainFirstIcon
+                        , tvMainNavigation, tvMainNavigationIcon);
+                //设置logo
+                //主标题
+                toolMain.setTitle("项目");
                 toolMain.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
                 break;
             //侧滑的
@@ -201,6 +256,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.ll_main_start_we:
                 startActivity(new Intent(this, AboutWeActivity.class));
+                break;
+            case R.id.ll_main_start_logout:
+                //退出登录
                 break;
             default:
                 break;
@@ -255,11 +313,16 @@ public class MainActivity extends BaseActivity {
      * @date 2018/8/28 0028 上午 10:37
      * @desc 设置颜色
      */
-    private void setColor(TextView t1, TextView t2, TextView t3, TextView t4) {
+    private void setColor(TextView t1, TextView t2, TextView t3, TextView t4
+            , TextView t5, TextView t6, TextView t7, TextView t8) {
         t1.setTextColor(ContextCompat.getColor(this, R.color.main_color));
         t2.setTextColor(ContextCompat.getColor(this, R.color.main_color));
         t3.setTextColor(ContextCompat.getColor(this, R.color.gray));
         t4.setTextColor(ContextCompat.getColor(this, R.color.gray));
+        t5.setTextColor(ContextCompat.getColor(this, R.color.gray));
+        t6.setTextColor(ContextCompat.getColor(this, R.color.gray));
+        t7.setTextColor(ContextCompat.getColor(this, R.color.gray));
+        t8.setTextColor(ContextCompat.getColor(this, R.color.gray));
     }
 
     //====================================================================================================

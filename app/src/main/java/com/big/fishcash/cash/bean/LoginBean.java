@@ -1,5 +1,7 @@
 package com.big.fishcash.cash.bean;
 
+import java.util.List;
+
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
@@ -34,43 +36,16 @@ package com.big.fishcash.cash.bean;
 
 public class LoginBean {
 
+
     /**
-     * code : 1000
-     * msg : 服务成功
-     * extInfo : null
-     * data : {"clerkNumber":"180614165216655","shopNumber":"1000180614300325544","clerkName":"管理员","paymentUser":"171226165145437","shopName":"大头怪梁秀秀的收银店铺","shopAddress":"河北省石家庄市桥西区勒泰","shopPhone":"17732152792"}
-     * success : true
+     * data : {"collectIds":[],"email":"","icon":"","id":9891,"password":"123456","token":"","type":0,"username":"17603271211"}
+     * errorCode : 0
+     * errorMsg :
      */
 
-    private int code;
-    private String msg;
-    private Object extInfo;
     private DataBean data;
-    private boolean success;
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public Object getExtInfo() {
-        return extInfo;
-    }
-
-    public void setExtInfo(Object extInfo) {
-        this.extInfo = extInfo;
-    }
+    private int errorCode;
+    private String errorMsg;
 
     public DataBean getData() {
         return data;
@@ -80,87 +55,105 @@ public class LoginBean {
         this.data = data;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public int getErrorCode() {
+        return errorCode;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 
     public static class DataBean {
         /**
-         * clerkNumber : 180614165216655
-         * shopNumber : 1000180614300325544
-         * clerkName : 管理员
-         * paymentUser : 171226165145437
-         * shopName : 大头怪梁秀秀的收银店铺
-         * shopAddress : 河北省石家庄市桥西区勒泰
-         * shopPhone : 17732152792
+         * collectIds : []
+         * email :
+         * icon :
+         * id : 9891
+         * password : 123456
+         * token :
+         * type : 0
+         * username : 17603271211
          */
 
-        private String clerkNumber;
-        private String shopNumber;
-        private String clerkName;
-        private String paymentUser;
-        private String shopName;
-        private String shopAddress;
-        private String shopPhone;
+        private String email;
+        private String icon;
+        private int id;
+        private String password;
+        private String token;
+        private int type;
+        private String username;
+        private List<?> collectIds;
 
-        public String getClerkNumber() {
-            return clerkNumber;
+        public String getEmail() {
+            return email;
         }
 
-        public void setClerkNumber(String clerkNumber) {
-            this.clerkNumber = clerkNumber;
+        public void setEmail(String email) {
+            this.email = email;
         }
 
-        public String getShopNumber() {
-            return shopNumber;
+        public String getIcon() {
+            return icon;
         }
 
-        public void setShopNumber(String shopNumber) {
-            this.shopNumber = shopNumber;
+        public void setIcon(String icon) {
+            this.icon = icon;
         }
 
-        public String getClerkName() {
-            return clerkName;
+        public int getId() {
+            return id;
         }
 
-        public void setClerkName(String clerkName) {
-            this.clerkName = clerkName;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public String getPaymentUser() {
-            return paymentUser;
+        public String getPassword() {
+            return password;
         }
 
-        public void setPaymentUser(String paymentUser) {
-            this.paymentUser = paymentUser;
+        public void setPassword(String password) {
+            this.password = password;
         }
 
-        public String getShopName() {
-            return shopName;
+        public String getToken() {
+            return token;
         }
 
-        public void setShopName(String shopName) {
-            this.shopName = shopName;
+        public void setToken(String token) {
+            this.token = token;
         }
 
-        public String getShopAddress() {
-            return shopAddress;
+        public int getType() {
+            return type;
         }
 
-        public void setShopAddress(String shopAddress) {
-            this.shopAddress = shopAddress;
+        public void setType(int type) {
+            this.type = type;
         }
 
-        public String getShopPhone() {
-            return shopPhone;
+        public String getUsername() {
+            return username;
         }
 
-        public void setShopPhone(String shopPhone) {
-            this.shopPhone = shopPhone;
+        public void setUsername(String username) {
+            this.username = username;
+        }
+
+        public List<?> getCollectIds() {
+            return collectIds;
+        }
+
+        public void setCollectIds(List<?> collectIds) {
+            this.collectIds = collectIds;
         }
     }
 }

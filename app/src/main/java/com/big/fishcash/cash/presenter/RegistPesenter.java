@@ -3,11 +3,11 @@ package com.big.fishcash.cash.presenter;
 import android.text.TextUtils;
 
 import com.big.fishcash.cash.bean.BaseBean;
-import com.big.fishcash.cash.bean.SendMsgBean;
-import com.big.fishcash.cash.contract.ForgetPasswordContract;
-import com.big.fishcash.cash.http.MvpCallBack;
-import com.big.fishcash.cash.model.IForgetPasswordModel;
-import com.big.fishcash.cash.ui.activity.ForgetPasswordActivity;
+import com.big.fishcash.cash.bean.RegistBean;
+import com.big.fishcash.cash.contract.RegistContract;
+import com.big.fishcash.cash.network.MvpCallBack;
+import com.big.fishcash.cash.model.IRegistModel;
+import com.big.fishcash.cash.ui.activity.RegistActivity;
 import com.big.fishcash.cash.util.ToastUtil;
 
 /**
@@ -42,18 +42,16 @@ import com.big.fishcash.cash.util.ToastUtil;
  */
 
 
-public class ForgetPasswordPesenter extends BasePersenter<ForgetPasswordActivity> implements ForgetPasswordContract.IForgetPasswordPesenter {
-    private IForgetPasswordModel iForgetPasswordModel;
+public class RegistPesenter extends BasePersenter<RegistActivity> implements RegistContract.IRegistPesenter {
+    private IRegistModel iRegistModel;
 
-    //接口返回的验证码
-    private String sendMsgCode;
 
-    public ForgetPasswordPesenter(IForgetPasswordModel iForgetPasswordModel) {
-        this.iForgetPasswordModel = iForgetPasswordModel;
+    public RegistPesenter(IRegistModel iRegistModel) {
+        this.iRegistModel = iRegistModel;
     }
 
     @Override
-    public void sendMsg(String phone) {
+    public void regist(String phone, String password1, String password2) {
         if (!isAttachView()) {
             return;
         }
@@ -61,45 +59,7 @@ public class ForgetPasswordPesenter extends BasePersenter<ForgetPasswordActivity
             ToastUtil.showToast("手机号不能为空");
             return;
         }
-        getMvpView().showLoadingDialog();
-        iForgetPasswordModel.getSendMsg(phone, new MvpCallBack<SendMsgBean>() {
-            @Override
-            public void onSuccess(SendMsgBean data) {
-                sendMsgCode = data.getData().getVerificationCode();
-                getMvpView().timeCount();
-            }
 
-            @Override
-            public void onFailure(String msg) {
-                ToastUtil.showToast(msg);
-            }
-
-            @Override
-            public void onError() {
-                ToastUtil.showError();
-            }
-
-            @Override
-            public void onComplete() {
-                getMvpView().dismissLoadingDialog();
-            }
-        });
-    }
-
-    @Override
-    public void yesForget(String phone, String sendMsg, String password1, String password2) {
-        if (!isAttachView()) {
-            return;
-        }
-        if (TextUtils.isEmpty(phone)) {
-            ToastUtil.showToast("手机号不能为空");
-            return;
-        }
-        //验证验证码是否正确 验证两次输入的密码是否一致
-        if (!sendMsg.equals(sendMsgCode)) {
-            ToastUtil.showToast("验证码错误，请重新输入");
-            return;
-        }
         if (!isPasswordValid(password1)) {
             ToastUtil.showToast("请输入正确密码 6-18位");
             return;
@@ -110,9 +70,9 @@ public class ForgetPasswordPesenter extends BasePersenter<ForgetPasswordActivity
         }
 
 
-        iForgetPasswordModel.getYesForgetResult(phone, sendMsg, password1, new MvpCallBack<BaseBean>() {
+        iRegistModel.regist(phone,password1, new MvpCallBack<RegistBean>() {
             @Override
-            public void onSuccess(BaseBean data) {
+            public void onSuccess(RegistBean data) {
                 getMvpView().intentLogin();
             }
 

@@ -2,6 +2,7 @@ package com.big.fishcash.cash.http;
 
 import com.big.fishcash.cash.bean.BaseBean;
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.bean.RegistBean;
 import com.big.fishcash.cash.bean.SendMsgBean;
 
 import okhttp3.ResponseBody;
@@ -50,42 +51,26 @@ public interface ApiService {
     /**
      * TODO 登录接口
      *
-     * @param userName        账号
-     * @param passWord        密码
-     * @param ip              ip
-     * @param equipmentNumber 设备编号
-     * @param master          极光master
-     * @param appKey          极光appkey
+     * @param userName 账号
+     * @param passWord 密码
      */
     @FormUrlEncoded
     @POST("user/login")
-    Observable<LoginBean> tologin(@Field("userName") String userName,
-                                  @Field("passWord") String passWord,
-                                  @Field("ip") String ip,
-                                  @Field("equipmentNumber") String equipmentNumber,
-                                  @Field("master") String master,
-                                  @Field("appKey") String appKey);
+    Observable<LoginBean> tologin(@Field("username") String userName,
+                               @Field("password") String passWord);
+
 
     /**
-     * TODO 发送验证码
+     * TODO 注册接口
      *
-     * @param phone 手机号
+     * @param userName 账号
+     * @param passWord 密码
      */
     @FormUrlEncoded
-    @POST("user/sendMessageCode")
-    Observable<SendMsgBean> sendMessageCode(@Field("phone") String phone);
-
-    /**
-     * TODO 忘记密码接口
-     *
-     * @param userName         账号
-     * @param passWord         密码
-     * @param verificationCode 验证码
-     */
-    @FormUrlEncoded
-    @POST("user/updateMessagePassWord")
-    Observable<BaseBean> updateMessagePassWord(@Field("userName") String userName,
-                                               @Field("passWord") String passWord,
-                                               @Field("verificationCode") String verificationCode);
+    @POST("user/register")
+    Observable<RegistBean> register(@Field("username") String userName,
+                                    @Field("password") String passWord,
+                                    @Field("repassword") String repassWord
+    );
 
 }
