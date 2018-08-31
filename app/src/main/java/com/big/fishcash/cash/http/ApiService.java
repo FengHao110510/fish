@@ -1,5 +1,6 @@
 package com.big.fishcash.cash.http;
 
+import com.big.fishcash.cash.bean.ArticleBean;
 import com.big.fishcash.cash.bean.BaseBean;
 import com.big.fishcash.cash.bean.LoginBean;
 import com.big.fishcash.cash.bean.RegistBean;
@@ -11,6 +12,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -57,7 +59,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("user/login")
     Observable<LoginBean> tologin(@Field("username") String userName,
-                               @Field("password") String passWord);
+                                  @Field("password") String passWord);
 
 
     /**
@@ -73,4 +75,13 @@ public interface ApiService {
                                     @Field("repassword") String repassWord
     );
 
+    /**
+     * TODO 首页列表
+     *
+     * @author fenghao
+     * @date 2018/8/31 0031 下午 12:13
+     * @desc 首页列表接口
+     */
+    @GET("article/list/{page}/json")
+    Observable<ArticleBean> articleList(@Path("page") int page);
 }

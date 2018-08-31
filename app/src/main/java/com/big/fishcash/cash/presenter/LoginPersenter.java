@@ -54,7 +54,7 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements Logi
     }
 
     @Override
-    public void toLogin( String user, String password) {
+    public void toLogin(String user, String password) {
         if (!isAttachView()) {
             return;
         }
@@ -84,6 +84,7 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements Logi
             @Override
             public void onError() {
                 ToastUtil.showToast("网络连接出错");
+                getMvpView().dismissLoadingDialog();
             }
 
             @Override

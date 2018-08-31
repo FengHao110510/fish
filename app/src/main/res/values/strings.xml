@@ -4,11 +4,12 @@
 
     <!--Typeface icon-->
     <string name="icon_fanhuijian">&#xe64b;</string>
-    <string name="icon_login_check">&#xe641;</string>
+    <string name="icon_login_check">&#xe7c0;</string>
     <string name="qq">&#xe614;</string>
     <string name="youke">&#xe670;</string>
     <string name="wechar">&#xe73f;</string>
     <string name="main_first">&#xe612;</string>
+    <string name="main_first_item_time">&#xe652;</string>
     <string name="main_knowledge">&#xe63a;</string>
     <string name="main_navigation">&#xe77a;</string>
     <string name="main_project">&#xe733;</string>
