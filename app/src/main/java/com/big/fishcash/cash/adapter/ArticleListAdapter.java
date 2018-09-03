@@ -60,22 +60,28 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleBean.DataBean.Da
         helper.setText(R.id.tv_item_atricle_author, item.getAuthor())
                 .setText(R.id.tv_item_atricle_nicedate, item.getNiceDate())
                 .setText(R.id.tv_item_atricle_title, item.getTitle())
-                .setText(R.id.tv_item_atricle_chaptername, item.getChapterName());
+                .setText(R.id.tv_item_atricle_chaptername, item.getChapterName())
+                .addOnClickListener(R.id.iv_item_atricle_collect);
         //看看是否有图
-        if (!TextUtils.isEmpty(item.getEnvelopePic())){
+        if (!TextUtils.isEmpty(item.getEnvelopePic())) {
             Glide.with(mContext).load(item.getEnvelopePic()).placeholder(R.drawable.dg_logo)
                     .error(R.drawable.dg_logo).into((ImageView) helper.getView(R.id.iv_item_atricle_img));
-            helper.setVisible(R.id.iv_item_atricle_img,true);
+            helper.setVisible(R.id.iv_item_atricle_img, true);
         }
 
         //如果是一天之内的显示
-        if (!item.getNiceDate().contains("天")){
-            helper.setVisible(R.id.tv_item_atricle_new,true);
+        if (item.getNiceDate().contains("小时")) {
+            helper.setVisible(R.id.tv_item_atricle_new, true);
+            helper.setVisible(R.id.iv_item_atricle_icon, false);
+        } else {
+            helper.setVisible(R.id.tv_item_atricle_new, false);
+            helper.setVisible(R.id.iv_item_atricle_icon, true);
+
         }
-        if (item.isCollect()){
-            helper.setImageResource(R.id.iv_item_atricle_collect,R.mipmap.xin1);
-        }else {
-            helper.setImageResource(R.id.iv_item_atricle_collect,R.mipmap.xin);
+        if (item.isCollect()) {
+            helper.setImageResource(R.id.iv_item_atricle_collect, R.mipmap.xin1);
+        } else {
+            helper.setImageResource(R.id.iv_item_atricle_collect, R.mipmap.xin);
 
         }
     }

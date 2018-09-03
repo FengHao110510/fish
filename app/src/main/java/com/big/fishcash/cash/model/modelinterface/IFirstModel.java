@@ -1,4 +1,4 @@
-package com.big.fishcash.cash.model;
+package com.big.fishcash.cash.model.modelinterface;
 
 import com.big.fishcash.cash.network.MvpCallBack;
 
@@ -6,8 +6,8 @@ import com.big.fishcash.cash.network.MvpCallBack;
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
- * 创建日期：2018/8/23 0023
- * 描述：
+ * 创建日期：2018/8/31 0031
+ * 描述：首页文章列表
  * 修订历史：
  * ┌─┐       ┌─┐
  * ┌──┘ ┴───────┘ ┴──┐
@@ -34,12 +34,20 @@ import com.big.fishcash.cash.network.MvpCallBack;
  */
 
 
-public interface IRegistModel {
+public interface IFirstModel {
 
     /**
      * @author fenghao
-     * @date 2018/8/23 0023 下午 15:02
-     * @desc 注册
+     * @date 2018/8/31 0031 上午 11:52
+     * @desc 获取首页文章列表
      */
-    void regist(String phone, String password1, MvpCallBack mvpCallBack);
+    void articleList(int page, MvpCallBack mvpCallBack);
+
+    /**
+     * @param mvpCallBack 回调
+     * @author fenghao
+     * @date 2018/9/3 0003 上午 11:00
+     * @desc 获取banner列表
+     */
+    void getBannerList(MvpCallBack mvpCallBack);
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
+import com.big.fishcash.cash.ui.MainActivity;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -44,7 +45,7 @@ public class WelcomeActivity extends BaseActivity {
     //跳转方向
     private void intentMainAct() {
         Intent mainIntent = null;
-        mainIntent = new Intent(this, LoginActivity.class);
+        mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
         finish();
     }

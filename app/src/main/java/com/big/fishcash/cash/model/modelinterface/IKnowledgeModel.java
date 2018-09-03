@@ -1,15 +1,14 @@
-package com.big.fishcash.cash.model;
+package com.big.fishcash.cash.model.modelinterface;
 
-import android.content.Context;
-
+import com.big.fishcash.cash.bean.KnowledgeBean;
 import com.big.fishcash.cash.network.MvpCallBack;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
- * 创建日期：2018/8/9 0009
- * 描述：LoginModel层接口---实现该接口的类负责实际的获取数据操作，如数据库读取、网络加载
+ * 创建日期：2018/9/3 0003
+ * 描述：
  * 修订历史：
  * ┌─┐       ┌─┐
  * ┌──┘ ┴───────┘ ┴──┐
@@ -36,14 +35,11 @@ import com.big.fishcash.cash.network.MvpCallBack;
  */
 
 
-public interface ILoginModel {
-
-
+public interface IKnowledgeModel {
     /**
-     * @return login
-     * @author fenghao
-     * @date 2018/8/15 0015 下午 20:11
-     * @desc 登录操作
+     *  @author  fenghao
+     *  @date    2018/9/3 0003 下午 17:50
+     *  @desc   获取知识体系数据
      */
-    void toLogin(String user, String password, MvpCallBack mvpCallBack);
+    void getKnowledgeList(MvpCallBack<KnowledgeBean> mvpCallBack);
 }

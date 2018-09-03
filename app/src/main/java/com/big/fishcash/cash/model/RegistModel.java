@@ -1,13 +1,10 @@
 package com.big.fishcash.cash.model;
 
-import android.util.Log;
-
-import com.big.fishcash.cash.bean.BaseBean;
 import com.big.fishcash.cash.bean.RegistBean;
+import com.big.fishcash.cash.model.modelinterface.IRegistModel;
 import com.big.fishcash.cash.network.FishClient;
 import com.big.fishcash.cash.network.MvpCallBack;
 import com.big.fishcash.cash.util.ToastUtil;
-import com.google.gson.Gson;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;

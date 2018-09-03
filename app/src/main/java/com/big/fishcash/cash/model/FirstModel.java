@@ -2,7 +2,9 @@ package com.big.fishcash.cash.model;
 
 import android.util.Log;
 
+import com.big.fishcash.cash.bean.ArticleBannerBean;
 import com.big.fishcash.cash.bean.ArticleBean;
+import com.big.fishcash.cash.model.modelinterface.IFirstModel;
 import com.big.fishcash.cash.network.FishClient;
 import com.big.fishcash.cash.network.MvpCallBack;
 import com.big.fishcash.cash.util.ToastUtil;
@@ -59,7 +61,7 @@ public class FirstModel implements IFirstModel {
                     @Override
                     public void onError(Throwable e) {
                         mvpCallBack.onError();
-                        Log.e("", "asdonError: "+e.toString() );
+                        Log.e("", "asdonError: " + e.toString());
                         ToastUtil.showToast(e.toString());
                     }
 
@@ -71,6 +73,33 @@ public class FirstModel implements IFirstModel {
                             mvpCallBack.onFailure(articleBean.getErrorMsg());
                             ToastUtil.showToast(articleBean.getErrorMsg());
 
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void getBannerList(final MvpCallBack mvpCallBack) {
+        FishClient.getFishRetrofitInstance().articleBannerList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ArticleBannerBean>() {
+                    @Override
+                    public void onCompleted() {
+                        mvpCallBack.onComplete();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mvpCallBack.onError();
+                    }
+
+                    @Override
+                    public void onNext(ArticleBannerBean articleBannerBean) {
+                        if (articleBannerBean.getErrorCode() == 0) {
+                            mvpCallBack.onSuccess(articleBannerBean);
+                        } else {
+                            mvpCallBack.onFailure(articleBannerBean.getErrorMsg());
                         }
                     }
                 });

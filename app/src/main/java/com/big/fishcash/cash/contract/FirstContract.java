@@ -1,5 +1,6 @@
 package com.big.fishcash.cash.contract;
 
+import com.big.fishcash.cash.bean.ArticleBannerBean;
 import com.big.fishcash.cash.bean.ArticleBean;
 
 /**
@@ -43,6 +44,14 @@ public interface FirstContract {
          * @desc 展示首页文章列表
          */
         void showArticleList(ArticleBean articleBean);
+
+        /**
+         * @param articleBannerBean 首页banner数据
+         * @author fenghao
+         * @date 2018/9/3 0003 上午 11:09
+         * @desc 首页banner列表数据展示
+         */
+        void showArticleBannerList(ArticleBannerBean articleBannerBean);
     }
 
     interface IFirstPesenter {
@@ -53,5 +62,12 @@ public interface FirstContract {
          * @desc 获取首页文章列表数据
          */
         void getArticleList(int page);
+
+        /**
+         * @author fenghao
+         * @date 2018/9/3 0003 上午 10:58
+         * @desc 获取banner列表数据
+         */
+        void getBannerList();
     }
 }

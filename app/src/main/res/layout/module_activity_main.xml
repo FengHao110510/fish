@@ -26,7 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/main_color"
-                app:layout_scrollFlags="scroll|enterAlways"></android.support.v7.widget.Toolbar>
+                app:layout_scrollFlags="scroll|enterAlways">
+
+            </android.support.v7.widget.Toolbar>
 
 
         </android.support.design.widget.AppBarLayout>
@@ -53,7 +55,8 @@
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="60dp"
             android:layout_marginRight="16dp"
-            android:src="@mipmap/share"
+            android:src="@mipmap/icon_up_arrow"
+            app:backgroundTint="@color/main_color"
             app:layout_behavior="com.big.fishcash.cash.animation.MyBottomBarBehavior" />
     </android.support.design.widget.CoordinatorLayout>
 

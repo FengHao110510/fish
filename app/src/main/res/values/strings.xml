@@ -19,6 +19,7 @@
     <string name="main_start_we">&#xe6e8;</string>
     <string name="main_start_logout">&#xe65f;</string>
     <string name="icon_login_logo">&#xe636;</string>
+    <string name="right">&#xe663;</string>
 
 
     <string name="title_activity_main">MainActivity</string>

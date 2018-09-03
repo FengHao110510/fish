@@ -1,7 +1,9 @@
 package com.big.fishcash.cash.http;
 
+import com.big.fishcash.cash.bean.ArticleBannerBean;
 import com.big.fishcash.cash.bean.ArticleBean;
 import com.big.fishcash.cash.bean.BaseBean;
+import com.big.fishcash.cash.bean.KnowledgeBean;
 import com.big.fishcash.cash.bean.LoginBean;
 import com.big.fishcash.cash.bean.RegistBean;
 import com.big.fishcash.cash.bean.SendMsgBean;
@@ -84,4 +86,22 @@ public interface ApiService {
      */
     @GET("article/list/{page}/json")
     Observable<ArticleBean> articleList(@Path("page") int page);
+
+    /**
+     * TODO 首页banner列表
+     * @author fenghao
+     * @date 2018/9/3 0003 上午 11:03
+     * @desc 首页banner列表
+     */
+    @GET("banner/json")
+    Observable<ArticleBannerBean> articleBannerList();
+
+    /**
+     * TODO 知识体系列表
+     * @author fenghao
+     * @date 2018/9/3 0003 上午 11:03
+     * @desc 知识体系列表
+     */
+    @GET("tree/json")
+    Observable<KnowledgeBean> knowledgeList();
 }

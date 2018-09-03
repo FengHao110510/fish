@@ -1,13 +1,13 @@
-package com.big.fishcash.cash.model;
+package com.big.fishcash.cash.contract;
 
-import com.big.fishcash.cash.network.MvpCallBack;
+import com.big.fishcash.cash.bean.KnowledgeBean;
 
 /**
  * 版权：鸿搜网络公司 版权所有
  * 作者：冯大鱼
  * 版本：1.0
- * 创建日期：2018/8/31 0031
- * 描述：首页文章列表
+ * 创建日期：2018/9/3 0003
+ * 描述：
  * 修订历史：
  * ┌─┐       ┌─┐
  * ┌──┘ ┴───────┘ ┴──┐
@@ -34,12 +34,25 @@ import com.big.fishcash.cash.network.MvpCallBack;
  */
 
 
-public interface IFirstModel {
+public interface KnowledgeContract {
 
-    /**
-     * @author fenghao
-     * @date 2018/8/31 0031 上午 11:52
-     * @desc 获取首页文章列表
-     */
-    void articleList(int page,MvpCallBack mvpCallBack);
+    interface IKnowledgeView {
+
+        /**
+         * @param knowledgeBean 数据源
+         * @author fenghao
+         * @date 2018/9/3 0003 下午 17:53
+         * @desc 展示列表
+         */
+        void showKnowledgeList(KnowledgeBean knowledgeBean);
+    }
+
+    interface IKnowledgePersenter {
+        /**
+         * @author fenghao
+         * @date 2018/9/3 0003 下午 17:54
+         * @desc 获取数据
+         */
+        void getKnowLedgeList();
+    }
 }

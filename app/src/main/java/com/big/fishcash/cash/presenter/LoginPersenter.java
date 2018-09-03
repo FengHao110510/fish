@@ -1,12 +1,11 @@
 package com.big.fishcash.cash.presenter;
 
-import android.content.Context;
 import android.text.TextUtils;
 
 import com.big.fishcash.cash.bean.LoginBean;
 import com.big.fishcash.cash.contract.LoginContract;
 import com.big.fishcash.cash.network.MvpCallBack;
-import com.big.fishcash.cash.model.ILoginModel;
+import com.big.fishcash.cash.model.modelinterface.ILoginModel;
 import com.big.fishcash.cash.ui.activity.LoginActivity;
 import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;

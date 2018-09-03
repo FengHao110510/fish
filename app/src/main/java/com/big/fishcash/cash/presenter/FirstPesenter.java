@@ -1,8 +1,9 @@
 package com.big.fishcash.cash.presenter;
 
+import com.big.fishcash.cash.bean.ArticleBannerBean;
 import com.big.fishcash.cash.bean.ArticleBean;
 import com.big.fishcash.cash.contract.FirstContract;
-import com.big.fishcash.cash.model.IFirstModel;
+import com.big.fishcash.cash.model.modelinterface.IFirstModel;
 import com.big.fishcash.cash.network.MvpCallBack;
 import com.big.fishcash.cash.ui.fragment.FirstFragment;
 import com.big.fishcash.cash.util.ToastUtil;
@@ -72,6 +73,37 @@ public class FirstPesenter extends BasePersenter<FirstFragment> implements First
             @Override
             public void onComplete() {
                 getMvpView().dismissLoadingDialog();
+            }
+        });
+    }
+
+
+    @Override
+    public void getBannerList() {
+        if (!isAttachView()) {
+            return;
+        }
+        getMvpView().showLoadingDialog();
+        iFirstModel.getBannerList(new MvpCallBack<ArticleBannerBean>() {
+            @Override
+            public void onSuccess(ArticleBannerBean data) {
+                getMvpView().showArticleBannerList(data);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                ToastUtil.showToast(msg);
+            }
+
+            @Override
+            public void onError() {
+                getMvpView().dismissLoadingDialog();
+            }
+
+            @Override
+            public void onComplete() {
+                getMvpView().dismissLoadingDialog();
+
             }
         });
     }
