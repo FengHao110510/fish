@@ -5,10 +5,15 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/sm_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_new_content_list"
+        android:id="@+id/rv_content_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
+    </android.support.v7.widget.RecyclerView>    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 </LinearLayout>

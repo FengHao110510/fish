@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="horizontal">
 
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
+    <q.rorbin.verticaltablayout.VerticalTabLayout
+        android:id="@+id/tab_navigation"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="导航" />
+        android:layout_weight="2"
+        android:background="@color/color_main_gray"
+        app:tabIndicatorColor="@color/white"
+        app:tabMode="scrollable"
+        app:indicator_color="@color/white"
+        app:tab_margin="5dp"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/bg_gray">
+
+    </q.rorbin.verticaltablayout.VerticalTabLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_navigation"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5">
+
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

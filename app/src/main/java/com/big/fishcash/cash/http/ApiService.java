@@ -3,8 +3,11 @@ package com.big.fishcash.cash.http;
 import com.big.fishcash.cash.bean.ArticleBannerBean;
 import com.big.fishcash.cash.bean.ArticleBean;
 import com.big.fishcash.cash.bean.BaseBean;
+import com.big.fishcash.cash.bean.ContentBean;
 import com.big.fishcash.cash.bean.KnowledgeBean;
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.bean.NavigationBean;
+import com.big.fishcash.cash.bean.ProjectTabBean;
 import com.big.fishcash.cash.bean.RegistBean;
 import com.big.fishcash.cash.bean.SendMsgBean;
 
@@ -89,6 +92,7 @@ public interface ApiService {
 
     /**
      * TODO 首页banner列表
+     *
      * @author fenghao
      * @date 2018/9/3 0003 上午 11:03
      * @desc 首页banner列表
@@ -98,10 +102,47 @@ public interface ApiService {
 
     /**
      * TODO 知识体系列表
+     *
      * @author fenghao
      * @date 2018/9/3 0003 上午 11:03
      * @desc 知识体系列表
      */
     @GET("tree/json")
     Observable<KnowledgeBean> knowledgeList();
+
+    /**
+     * TODO 详细列表
+     *
+     * @author fenghao
+     * @date 2018/9/4 0004 上午 11:35
+     * @desc 知识体系详细列表
+     */
+    @GET("article/list/{page}/json")
+    Observable<ArticleBean> contentList(@Path("page") int page, @Query("cid") int cid);
+
+    /**
+     * @author fenghao
+     * @date 2018/9/4 0004 下午 17:42
+     * @desc 导航列表
+     */
+    @GET("navi/json")
+    Observable<NavigationBean> navigationList();
+
+    /**
+     * @author fenghao
+     * @date 2018/9/4 0004 下午 16:23
+     * @desc 项目列表Tab
+     */
+    @GET("project/tree/json")
+    Observable<ProjectTabBean> projectTab();
+
+    /**
+     * TODO 详细列表
+     *
+     * @author fenghao
+     * @date 2018/9/4 0004 上午 11:35
+     * @desc 项目详细列表
+     */
+    @GET("project/list/{page}/json")
+    Observable<ArticleBean> contentProjectList(@Path("page") int page, @Query("cid") int cid);
 }
