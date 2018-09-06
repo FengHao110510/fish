@@ -53,7 +53,6 @@ public class RegistModel implements IRegistModel {
                     @Override
                     public void onCompleted() {
                         mvpCallBack.onComplete();
-                        ToastUtil.showToast("adsasd");
 
                     }
 

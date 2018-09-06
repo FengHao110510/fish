@@ -63,4 +63,11 @@ dependencies {
     compile 'com.hyman:flowlayout-lib:1.1.2'
     //竖直Tablayout
     compile 'q.rorbin:VerticalTabLayout:1.2.5'
+
+    //友盟
+    compile 'com.umeng.sdk:common:1.5.0'
+    compile 'com.umeng.sdk:analytics:7.5.0'
+    //eventbus
+    api 'org.greenrobot:eventbus:3.1.1'
+
 }

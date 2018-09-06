@@ -50,6 +50,7 @@
             app:layout_behavior="com.big.fishcash.cash.animation.MyBottomBarBehavior" />
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabtn_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"

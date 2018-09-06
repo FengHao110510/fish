@@ -1,6 +1,7 @@
 package com.big.fishcash.cash.ui.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -10,14 +11,18 @@ import android.view.View;
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.adapter.ContentVPAdapter;
 import com.big.fishcash.cash.base.BaseActivity;
+import com.big.fishcash.cash.bean.FABTNbean;
 import com.big.fishcash.cash.bean.KnowledgeBean;
 import com.big.fishcash.cash.ui.fragment.ContentFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class KnowledgeChildActivity extends BaseActivity {
 
@@ -27,6 +32,8 @@ public class KnowledgeChildActivity extends BaseActivity {
     ViewPager vpKonwledgeChild;
     @BindView(R.id.tab_konwledge_child)
     TabLayout tabKonwledgeChild;
+    @BindView(R.id.fabtn_konwledge_child)
+    FloatingActionButton fabtnKonwledgeChild;
     //从上个页面传过来的 数据
     private KnowledgeBean.DataBean dataBean;
     private List<KnowledgeBean.DataBean.ChildrenBean> childrenBeanList;
@@ -35,17 +42,17 @@ public class KnowledgeChildActivity extends BaseActivity {
     List<ContentFragment> fragmentList = new ArrayList<ContentFragment>();
     //vp适配器
     ContentVPAdapter contentVPAdapter;
+
     @Override
     public int initLayout() {
         return R.layout.module_activity_knowledge_child;
     }
 
     @Override
-    protected void init() {
+    public void init() {
         initData();
         initTooBar();
     }
-
 
 
     @Override
@@ -89,8 +96,8 @@ public class KnowledgeChildActivity extends BaseActivity {
             tabKonwledgeChild.addTab(tab);
             ContentFragment contentFragment = new ContentFragment();
             Bundle bundle = new Bundle();
-            bundle.putInt("cid",childrenBeanList.get(i).getId());
-            bundle.putInt("where",1);
+            bundle.putInt("cid", childrenBeanList.get(i).getId());
+            bundle.putInt("where", 1);
 
             contentFragment.setArguments(bundle);
 //            fragmentList.add(ProjectContentFragment);
@@ -113,7 +120,7 @@ public class KnowledgeChildActivity extends BaseActivity {
 
             }
         });
-        contentVPAdapter = new ContentVPAdapter(getSupportFragmentManager(),fragmentList);
+        contentVPAdapter = new ContentVPAdapter(getSupportFragmentManager(), fragmentList);
         vpKonwledgeChild.setAdapter(contentVPAdapter);
         tabKonwledgeChild.setupWithViewPager(vpKonwledgeChild);
         //重新设置tabtitle 在setupWithViewPager之后
@@ -123,11 +130,18 @@ public class KnowledgeChildActivity extends BaseActivity {
         vpKonwledgeChild.setOffscreenPageLimit(childrenBeanList.size()); //预加载
     }
 
+    @OnClick(R.id.fabtn_konwledge_child)
+    public void onViewClicked() {
+        EventBus.getDefault().post(new FABTNbean(3));
+    }
+
     //====================================================================================================
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
+
 }

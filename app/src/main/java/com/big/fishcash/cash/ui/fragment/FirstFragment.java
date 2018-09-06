@@ -15,10 +15,13 @@ import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.adapter.ArticleListAdapter;
 import com.big.fishcash.cash.bean.ArticleBannerBean;
 import com.big.fishcash.cash.bean.ArticleBean;
+import com.big.fishcash.cash.bean.FABTNbean;
 import com.big.fishcash.cash.contract.FirstContract;
 import com.big.fishcash.cash.model.FirstModel;
 import com.big.fishcash.cash.presenter.FirstPesenter;
+import com.big.fishcash.cash.ui.activity.MoreActivity;
 import com.big.fishcash.cash.ui.activity.WebActivity;
+import com.big.fishcash.cash.util.ToastUtil;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -30,6 +33,9 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +94,8 @@ public class FirstFragment extends BaseFragment implements FirstContract.IFirstV
     List<String> listBannerImg;
     //banner名称
     List<String> titles;
+    //banner地址
+    List<String> links;
     //banner
     View view;
     Banner banner;
@@ -140,6 +148,7 @@ public class FirstFragment extends BaseFragment implements FirstContract.IFirstV
         //放置图片的集合
         listBannerImg = new ArrayList<>();
         titles = new ArrayList<>();
+        links = new ArrayList<>();
 
     }
 
@@ -155,10 +164,10 @@ public class FirstFragment extends BaseFragment implements FirstContract.IFirstV
                 @Override
                 public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                     ImageView ivItemAtricleCollect = view.findViewById(R.id.iv_item_atricle_collect);
-                    if (datasBeanList.get(position).isCollect()){
+                    if (datasBeanList.get(position).isCollect()) {
                         datasBeanList.get(position).setCollect(false);
                         ivItemAtricleCollect.setImageResource(R.mipmap.xin);
-                    }else {
+                    } else {
                         datasBeanList.get(position).setCollect(true);
                         ivItemAtricleCollect.setImageResource(R.mipmap.xin1);
                     }
@@ -168,8 +177,8 @@ public class FirstFragment extends BaseFragment implements FirstContract.IFirstV
                 @Override
                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                     Intent blogsIntent = new Intent(getActivity(), WebActivity.class);
-                    blogsIntent.putExtra("title",datasBeanList.get(position).getTitle());
-                    blogsIntent.putExtra("url",datasBeanList.get(position).getLink());
+                    blogsIntent.putExtra("title", datasBeanList.get(position).getTitle());
+                    blogsIntent.putExtra("url", datasBeanList.get(position).getLink());
                     startActivity(blogsIntent);
                 }
             });
@@ -205,10 +214,12 @@ public class FirstFragment extends BaseFragment implements FirstContract.IFirstV
     public void showArticleBannerList(ArticleBannerBean articleBannerBean) {
         List<ArticleBannerBean.DataBean> data = articleBannerBean.getData();
         titles.clear();
+        links.clear();
         listBannerImg.clear();
         for (int i = 0; i < data.size(); i++) {
             titles.add(data.get(i).getTitle());
             listBannerImg.add(data.get(i).getImagePath());
+            links.add(data.get(i).getUrl());
         }
         if (view == null) {
             initBanner();
@@ -249,6 +260,15 @@ public class FirstFragment extends BaseFragment implements FirstContract.IFirstV
                 .start();
         articleListAdapter.removeAllHeaderView();
         articleListAdapter.addHeaderView(view);
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                Intent tagIntent = new Intent(getContext(), WebActivity.class);
+                tagIntent.putExtra("title", titles.get(position));
+                tagIntent.putExtra("url", links.get(position));
+                startActivity(tagIntent);
+            }
+        });
     }
 
     //自定义的图片加载器
@@ -260,17 +280,58 @@ public class FirstFragment extends BaseFragment implements FirstContract.IFirstV
     }
 
 
+    @Subscribe
+    public void onEventMainThread(FABTNbean fabtNbean) {
+        if (fabtNbean.getPosition()==0){
+            smoothMoveToPosition(rvFirst,0);
+        }
+    }
+    //目标项是否在最后一个可见项之后
+    private boolean mShouldScroll;
+    //记录目标项位置
+    private int mToPosition;
+
+    /**
+     * 滑动到指定位置
+     */
+    private void smoothMoveToPosition(RecyclerView mRecyclerView, final int position) {
+        // 第一个可见位置
+        int firstItem = mRecyclerView.getChildLayoutPosition(mRecyclerView.getChildAt(0));
+        // 最后一个可见位置
+        int lastItem = mRecyclerView.getChildLayoutPosition(mRecyclerView.getChildAt(mRecyclerView.getChildCount() - 1));
+        if (position < firstItem) {
+            // 第一种可能:跳转位置在第一个可见位置之前，使用smoothScrollToPosition
+            mRecyclerView.smoothScrollToPosition(position);
+        } else if (position <= lastItem) {
+            // 第二种可能:跳转位置在第一个可见位置之后，最后一个可见项之前
+            int movePosition = position - firstItem;
+            if (movePosition >= 0 && movePosition < mRecyclerView.getChildCount()) {
+                int top = mRecyclerView.getChildAt(movePosition).getTop();
+                // smoothScrollToPosition 不会有效果，此时调用smoothScrollBy来滑动到指定位置
+                mRecyclerView.smoothScrollBy(0, top);
+            }
+        } else {
+            // 第三种可能:跳转位置在最后可见项之后，则先调用smoothScrollToPosition将要跳转的位置滚动到可见位置
+            // 再通过onScrollStateChanged控制再次调用smoothMoveToPosition，执行上一个判断中的方法
+            mRecyclerView.smoothScrollToPosition(position);
+            mToPosition = position;
+            mShouldScroll = true;
+        }
+    }
     //================================================================================================
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+        EventBus.getDefault().register(this);
+
         return rootView;
     }
 
     @Override
     public void onDestroyView() {
+        EventBus.getDefault().unregister(this);
         super.onDestroyView();
         unbinder.unbind();
     }

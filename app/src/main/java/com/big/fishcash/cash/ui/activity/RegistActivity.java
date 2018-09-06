@@ -41,11 +41,11 @@ public class RegistActivity extends BaseActivity implements RegistContract.IRegi
     }
 
     @Override
-    protected void init() {
+    public void init() {
         initData();
         initBack();
         initTitle("注册");
-        initBack();
+        FontHelper.injectFont(llRegist);
     }
 
     @Override
@@ -78,14 +78,14 @@ public class RegistActivity extends BaseActivity implements RegistContract.IRegi
 
     //============================================================================================
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         registPesenter.detachView();
     }

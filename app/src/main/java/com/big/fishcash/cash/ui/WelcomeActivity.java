@@ -1,10 +1,12 @@
-package com.big.fishcash.cash.ui.activity;
+package com.big.fishcash.cash.ui;
 
 import android.content.Intent;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
 import com.big.fishcash.cash.ui.MainActivity;
+import com.big.fishcash.cash.ui.activity.LoginActivity;
+import com.big.fishcash.cash.util.Global;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -19,7 +21,7 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     @Override
-    protected void init() {
+    public void init() {
         initData();
     }
 
@@ -45,7 +47,11 @@ public class WelcomeActivity extends BaseActivity {
     //跳转方向
     private void intentMainAct() {
         Intent mainIntent = null;
-        mainIntent = new Intent(this, MainActivity.class);
+        if (Global.getSpGlobalUtil().getCheckLogin()) {
+            mainIntent = new Intent(this, MainActivity.class);
+        }else {
+            mainIntent = new Intent(this, LoginActivity.class);
+        }
         startActivity(mainIntent);
         finish();
     }

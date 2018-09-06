@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.bean.KnowledgeBean;
+import com.big.fishcash.cash.util.ColorUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -61,8 +62,10 @@ public class KnowledgeAdapter extends BaseQuickAdapter<KnowledgeBean.DataBean, B
         tflItemKnowledgeChild.setAdapter(new TagAdapter<KnowledgeBean.DataBean.ChildrenBean>(item.getChildren()) {
             @Override
             public View getView(FlowLayout parent, int position, KnowledgeBean.DataBean.ChildrenBean childrenBean) {
-                TextView moduleTextTagKnowlege = (TextView) layoutInflater.inflate(R.layout.module_text_tag_knowlege, tflItemKnowledgeChild, false);
+                TextView moduleTextTagKnowlege = (TextView) layoutInflater.inflate(R.layout.module_text_tag_knowlege,
+                        tflItemKnowledgeChild, false);
                 moduleTextTagKnowlege.setText(childrenBean.getName());
+                moduleTextTagKnowlege.setTextColor(ColorUtil.getRandColorCode());
                 return moduleTextTagKnowlege;
             }
 

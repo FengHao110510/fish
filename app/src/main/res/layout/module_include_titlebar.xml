@@ -7,7 +7,7 @@
         android:id="@+id/fl_titlebar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/color_base_yellow">
+        android:background="@color/main_color">
 
         <TextView
             android:id="@+id/tv_titlebar_finish_back"

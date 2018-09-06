@@ -42,7 +42,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
-            android:name=".ui.activity.WelcomeActivity"
+            android:name=".ui.WelcomeActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -75,7 +75,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.activity.WebActivity" />
-        <activity android:name=".ui.activity.KnowledgeChildActivity"></activity>
+        <activity android:name=".ui.activity.KnowledgeChildActivity" />
+        <activity android:name=".ui.activity.MoreActivity" />
+        <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.SearchResultActivity"></activity>
     </application>
 
 </manifest>

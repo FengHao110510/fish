@@ -32,10 +32,10 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
     private static LoadingDialog loadingDialog;
     private TextView title;
     /***获取TAG的activity名称**/
-    protected final String TAG = this.getClass().getSimpleName();
+    public final String TAG = this.getClass().getSimpleName();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /**
          * 在调用Activity的setContentView()方法之前，如果是继承AppCompatActivity，
@@ -61,7 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
     public abstract int initLayout();
 
     //初始化
-    protected abstract void init();
+    public abstract void init();
 
     /**
      * 设置数据
@@ -73,25 +73,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
      */
     public void finishActivity() {
         finish();
-    }
-
-    /**
-     * @return 店铺编号
-     * @desc 获取店铺编号
-     * @anthor lpc
-     * @date: 2018/7/16
-     */
-    public String getShopNumber() {
-        return Global.getSpGlobalUtil().getShopNumber();
-    }
-
-    /**
-     * @desc 获取登录人编号
-     * @anthor lpc
-     * @date: 2018/7/16
-     */
-    public String getClerkNumber() {
-        return Global.getSpGlobalUtil().getClerkNumber();
     }
 
     @Override
@@ -151,7 +132,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
 
     }

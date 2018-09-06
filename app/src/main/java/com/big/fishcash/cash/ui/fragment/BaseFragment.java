@@ -14,6 +14,8 @@ import com.big.fishcash.cash.ui.dialog.LoadingDialog;
 import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 
 /**
@@ -59,25 +61,6 @@ public abstract class BaseFragment extends Fragment implements BaseIView {
     public abstract int initLayout();
 
     public abstract void init();
-
-    /**
-     * @return 店铺编号
-     * @desc 获取店铺编号
-     * @anthor lpc
-     * @date: 2018/7/16
-     */
-    public String getShopNumber() {
-        return Global.getSpGlobalUtil().getShopNumber();
-    }
-
-    /**
-     * @desc 获取登录人编号
-     * @anthor lpc
-     * @date: 2018/7/16
-     */
-    public String getClerkNumber() {
-        return Global.getSpGlobalUtil().getClerkNumber();
-    }
 
     /**
      * 解除绑定、以免发生内存泄漏

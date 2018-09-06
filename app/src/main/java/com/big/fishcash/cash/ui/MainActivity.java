@@ -2,6 +2,7 @@ package com.big.fishcash.cash.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,16 +19,22 @@ import android.widget.TextView;
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
 import com.big.fishcash.cash.base.BaseApplication;
+import com.big.fishcash.cash.bean.FABTNbean;
 import com.big.fishcash.cash.ui.activity.AboutWeActivity;
 import com.big.fishcash.cash.ui.activity.LoginActivity;
+import com.big.fishcash.cash.ui.activity.MoreActivity;
+import com.big.fishcash.cash.ui.activity.SearchActivity;
 import com.big.fishcash.cash.ui.fragment.BaseFragment;
 import com.big.fishcash.cash.ui.fragment.FirstFragment;
 import com.big.fishcash.cash.ui.fragment.KnowledgeFragment;
 import com.big.fishcash.cash.ui.fragment.NavigationFragment;
 import com.big.fishcash.cash.ui.fragment.ProjectFragment;
 import com.big.fishcash.cash.util.FontHelper;
+import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
 import com.big.fishcash.cash.views.CircleImageView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -82,6 +89,8 @@ public class MainActivity extends BaseActivity {
     TextView tvMainProject;
     @BindView(R.id.ll_main_project)
     LinearLayout llMainProject;
+    @BindView(R.id.fabtn_main)
+    FloatingActionButton fabtnMain;
 
     private ArrayList<BaseFragment> fragmentList;
     private BaseFragment tempFragment;//当前fragment
@@ -96,8 +105,7 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void init() {
-
+    public void init() {
         initData();
         initToolBar();
         initDrawerLayout();
@@ -142,13 +150,17 @@ public class MainActivity extends BaseActivity {
                 int id = item.getItemId();
                 String tip = "";
                 switch (id) {
+                    case R.id.menu_main_item_more:
+                        startActivity(new Intent(MainActivity.this, MoreActivity.class));
+                        break;
+                    case R.id.menu_main_item_search:
+                        startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                        break;
                     case R.id.menu_main_item_share:
-                        tip = "分享";
                         break;
                     default:
                         break;
                 }
-                ToastUtil.showToast(tip);
                 return false;
             }
         });
@@ -207,10 +219,13 @@ public class MainActivity extends BaseActivity {
         llMainFirst.performClick();
     }
 
+    @OnClick()
+    public void onViewClicked() {
+    }
 
-    @OnClick({R.id.ll_main_first, R.id.ll_main_knowledge, R.id.ll_main_navigation, R.id.ll_main_project,
-            R.id.ll_main_start_color,
-            R.id.ll_main_start_night, R.id.ll_main_start_we, R.id.ll_main_start_logout})
+    @OnClick({R.id.ll_main_first, R.id.ll_main_knowledge, R.id.ll_main_navigation,
+            R.id.ll_main_project, R.id.ll_main_start_color, R.id.ll_main_start_night,
+            R.id.ll_main_start_we, R.id.ll_main_start_logout, R.id.fabtn_main})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_main_first:
@@ -259,6 +274,13 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.ll_main_start_logout:
                 //退出登录
+                Global.logout();
+                startActivity(new Intent(this,LoginActivity.class));
+                finishActivity();
+                break;
+            case R.id.fabtn_main:
+                //悬浮按钮
+                EventBus.getDefault().post(new FABTNbean(position));
                 break;
             default:
                 break;
@@ -327,10 +349,18 @@ public class MainActivity extends BaseActivity {
 
     //====================================================================================================
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
     }
 
     private long exitTime = 0;//计算点击时间

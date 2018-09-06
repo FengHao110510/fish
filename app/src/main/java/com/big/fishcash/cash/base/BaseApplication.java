@@ -130,7 +130,7 @@ public class BaseApplication extends Application {
     private void settingOkHttp() {
         CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new LoggerInterceptor("HsFish", false))
+                .addInterceptor(new LoggerInterceptor("HsFish", true))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 .writeTimeout(10000L, TimeUnit.MILLISECONDS)

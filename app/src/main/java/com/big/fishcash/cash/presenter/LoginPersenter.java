@@ -132,11 +132,13 @@ public class LoginPersenter extends BasePersenter<LoginActivity> implements Logi
             Global.getSpGlobalUtil().setCheckPassword(true);
             Global.getSpGlobalUtil().setUserName(user);
             Global.getSpGlobalUtil().setPassword(password);
+
         } else {
             Global.getSpGlobalUtil().setCheckPassword(false);
             Global.getSpGlobalUtil().setUserName("");
             Global.getSpGlobalUtil().setPassword("");
         }
+        Global.getSpGlobalUtil().setCheckLogin(true);
         getMvpView().finishActivity();
     }
 }

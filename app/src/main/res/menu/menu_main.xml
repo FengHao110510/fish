@@ -2,6 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/menu_main_item_more"
+        app:showAsAction="ifRoom"
+        android:icon="@mipmap/more"
+        android:orderInCategory="90"
+        android:title="更多" />
+    <item
+        android:id="@+id/menu_main_item_search"
+        app:showAsAction="ifRoom"
+        android:icon="@mipmap/serch"
+        android:orderInCategory="90"
+        android:title="搜索" />
+    <item
         android:id="@+id/menu_main_item_share"
         app:showAsAction="ifRoom"
         android:icon="@mipmap/share"

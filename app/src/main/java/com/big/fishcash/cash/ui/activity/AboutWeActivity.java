@@ -25,7 +25,7 @@ public class AboutWeActivity extends BaseActivity {
     }
 
     @Override
-    protected void init() {
+    public void init() {
         initData();
         initToolBar();
     }
@@ -54,7 +54,7 @@ public class AboutWeActivity extends BaseActivity {
 
     //===============================================================================================
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);

@@ -12,10 +12,14 @@ import android.view.ViewGroup;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.adapter.NavigationAdapter;
+import com.big.fishcash.cash.bean.FABTNbean;
 import com.big.fishcash.cash.bean.NavigationBean;
 import com.big.fishcash.cash.contract.NavigationContract;
 import com.big.fishcash.cash.model.NavigationModel;
 import com.big.fishcash.cash.presenter.NavigationPersenter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +81,7 @@ public class NavigationFragment extends BaseFragment implements NavigationContra
 
     private NavigationAdapter navigationAdapter;
     LinearLayoutManager linearLayoutManager;
+
     @Override
     public int initLayout() {
         return R.layout.module_fragment_navigation;
@@ -128,7 +133,7 @@ public class NavigationFragment extends BaseFragment implements NavigationContra
         tabNavigation.addOnTabSelectedListener(new VerticalTabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabView tab, int position) {
-                smoothMoveToPosition(rvNavigation,position);
+                smoothMoveToPosition(rvNavigation, position);
             }
 
             @Override
@@ -144,8 +149,8 @@ public class NavigationFragment extends BaseFragment implements NavigationContra
      * @desc 展示list
      */
     private void initNavigationList() {
-        navigationAdapter = new NavigationAdapter(R.layout.module_item_navigation,dataBeanList);
-         linearLayoutManager = new LinearLayoutManager(getContext());
+        navigationAdapter = new NavigationAdapter(R.layout.module_item_navigation, dataBeanList);
+        linearLayoutManager = new LinearLayoutManager(getContext());
         rvNavigation.setLayoutManager(linearLayoutManager);
         rvNavigation.setAdapter(navigationAdapter);
         rvNavigation.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -158,6 +163,12 @@ public class NavigationFragment extends BaseFragment implements NavigationContra
         });
     }
 
+    @Subscribe
+    public void onEventMainThread(FABTNbean fabtNbean) {
+        if (fabtNbean.getPosition() == 2) {
+            smoothMoveToPosition(rvNavigation, 0);
+        }
+    }
 
     //目标项是否在最后一个可见项之后
     private boolean mShouldScroll;
@@ -191,18 +202,23 @@ public class NavigationFragment extends BaseFragment implements NavigationContra
             mShouldScroll = true;
         }
     }
+
     //==============================================================================================
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+        EventBus.getDefault().register(this);
+
         return rootView;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+
         unbinder.unbind();
     }
 

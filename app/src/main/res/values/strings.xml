@@ -13,6 +13,7 @@
     <string name="main_knowledge">&#xe63a;</string>
     <string name="main_navigation">&#xe77a;</string>
     <string name="main_project">&#xe733;</string>
+    <string name="delete">&#xe65e;</string>
 
     <string name="main_start_color">&#xe607;</string>
     <string name="main_start_night">&#xe600;</string>
@@ -20,6 +21,7 @@
     <string name="main_start_logout">&#xe65f;</string>
     <string name="icon_login_logo">&#xe636;</string>
     <string name="right">&#xe663;</string>
+    <string name="serch">&#xe601;</string>
 
 
     <string name="title_activity_main">MainActivity</string>

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.adapter.KnowledgeAdapter;
+import com.big.fishcash.cash.bean.FABTNbean;
 import com.big.fishcash.cash.bean.KnowledgeBean;
 import com.big.fishcash.cash.contract.KnowledgeContract;
 import com.big.fishcash.cash.model.KnowledgeModel;
@@ -21,6 +22,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -118,10 +122,50 @@ public class KnowledgeFragment extends BaseFragment implements KnowledgeContract
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Intent childKnowledgeIntent = new Intent(getActivity(), KnowledgeChildActivity.class);
-                childKnowledgeIntent.putExtra("dataBean", (Serializable)dataBeanList.get(position));
+                childKnowledgeIntent.putExtra("dataBean", (Serializable) dataBeanList.get(position));
                 startActivity(childKnowledgeIntent);
             }
         });
+    }
+
+    @Subscribe
+    public void onEventMainThread(FABTNbean fabtNbean) {
+        if (fabtNbean.getPosition() == 1) {
+            smoothMoveToPosition(rvKnowledge, 0);
+        }
+    }
+
+    //目标项是否在最后一个可见项之后
+    private boolean mShouldScroll;
+    //记录目标项位置
+    private int mToPosition;
+
+    /**
+     * 滑动到指定位置
+     */
+    private void smoothMoveToPosition(RecyclerView mRecyclerView, final int position) {
+        // 第一个可见位置
+        int firstItem = mRecyclerView.getChildLayoutPosition(mRecyclerView.getChildAt(0));
+        // 最后一个可见位置
+        int lastItem = mRecyclerView.getChildLayoutPosition(mRecyclerView.getChildAt(mRecyclerView.getChildCount() - 1));
+        if (position < firstItem) {
+            // 第一种可能:跳转位置在第一个可见位置之前，使用smoothScrollToPosition
+            mRecyclerView.smoothScrollToPosition(position);
+        } else if (position <= lastItem) {
+            // 第二种可能:跳转位置在第一个可见位置之后，最后一个可见项之前
+            int movePosition = position - firstItem;
+            if (movePosition >= 0 && movePosition < mRecyclerView.getChildCount()) {
+                int top = mRecyclerView.getChildAt(movePosition).getTop();
+                // smoothScrollToPosition 不会有效果，此时调用smoothScrollBy来滑动到指定位置
+                mRecyclerView.smoothScrollBy(0, top);
+            }
+        } else {
+            // 第三种可能:跳转位置在最后可见项之后，则先调用smoothScrollToPosition将要跳转的位置滚动到可见位置
+            // 再通过onScrollStateChanged控制再次调用smoothMoveToPosition，执行上一个判断中的方法
+            mRecyclerView.smoothScrollToPosition(position);
+            mToPosition = position;
+            mShouldScroll = true;
+        }
     }
 
     //===============================================================================================
@@ -130,12 +174,16 @@ public class KnowledgeFragment extends BaseFragment implements KnowledgeContract
         // TODO: inflate a fragment view
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+        EventBus.getDefault().register(this);
+
         return rootView;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+
         unbinder.unbind();
     }
 

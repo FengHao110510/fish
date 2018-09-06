@@ -2,24 +2,21 @@ package com.big.fishcash.cash.http;
 
 import com.big.fishcash.cash.bean.ArticleBannerBean;
 import com.big.fishcash.cash.bean.ArticleBean;
-import com.big.fishcash.cash.bean.BaseBean;
-import com.big.fishcash.cash.bean.ContentBean;
 import com.big.fishcash.cash.bean.KnowledgeBean;
 import com.big.fishcash.cash.bean.LoginBean;
+import com.big.fishcash.cash.bean.MoreTagBean;
 import com.big.fishcash.cash.bean.NavigationBean;
 import com.big.fishcash.cash.bean.ProjectTabBean;
 import com.big.fishcash.cash.bean.RegistBean;
-import com.big.fishcash.cash.bean.SendMsgBean;
+import com.big.fishcash.cash.bean.HotSearchBean;
+import com.big.fishcash.cash.bean.SearchResultBean;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 import rx.Observable;
 
 /**
@@ -145,4 +142,35 @@ public interface ApiService {
      */
     @GET("project/list/{page}/json")
     Observable<ArticleBean> contentProjectList(@Path("page") int page, @Query("cid") int cid);
+
+    /**
+     * TODO 常用网站
+     *
+     * @author fenghao
+     * @date 2018/9/6 0006 下午 14:35
+     * @desc 常用网站
+     */
+    @GET("friend/json")
+    Observable<MoreTagBean> moreTag();
+
+    /**
+     * TODO 热搜
+     *
+     * @author fenghao
+     * @date 2018/9/6 0006 下午 16:42
+     * @desc 热搜
+     */
+    @GET("hotkey/json")
+    Observable<HotSearchBean> hotSearch();
+
+    /**
+     * TODO 关键词查询数据
+     *
+     * @author fenghao
+     * @date 2018/9/6 0006 下午 17:37
+     * @desc 获取关键词查询之后的数据
+     */
+    @FormUrlEncoded
+    @POST("article/query/{page}/json")
+    Observable<SearchResultBean> searchResult(@Path("page") int page, @Field("k") String content);
 }

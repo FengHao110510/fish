@@ -70,7 +70,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
     }
 
     @Override
-    protected void init() {
+    public void init() {
         initData();
 
     }
@@ -141,7 +141,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
                     tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.gray));
                 } else {
                     isCheck = true;
-                    tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.color_base_yellow));
+                    tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.main_color));
 
                 }
                 break;
@@ -155,7 +155,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
 
     //===============================================================================================
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);

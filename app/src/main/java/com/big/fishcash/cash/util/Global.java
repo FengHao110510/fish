@@ -57,12 +57,7 @@ public class Global {
      * 清除登录信息
      */
     public static void logout() {
-        Global.getSpGlobalUtil().setAliCode("");
-        Global.getSpGlobalUtil().setWecharCode("");
-        Global.getSpGlobalUtil().setClerkName("");
-        Global.getSpGlobalUtil().setClerkNumber("");
-        Global.getSpGlobalUtil().setPaymentUser("");
-        Global.getSpGlobalUtil().setShopNumber("");
+       Global.getSpGlobalUtil().setCheckLogin(false);
     }
 
     /**

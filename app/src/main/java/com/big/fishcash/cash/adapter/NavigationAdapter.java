@@ -10,6 +10,7 @@ import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.bean.KnowledgeBean;
 import com.big.fishcash.cash.bean.NavigationBean;
 import com.big.fishcash.cash.ui.activity.WebActivity;
+import com.big.fishcash.cash.util.ColorUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -65,13 +66,14 @@ public class NavigationAdapter extends BaseQuickAdapter<NavigationBean.DataBean,
             public View getView(FlowLayout parent, int position, NavigationBean.DataBean.ArticlesBean articlesBean) {
                 TextView moduleTextTagKnowlege = (TextView) layoutInflater.inflate(R.layout.module_text_tag_navigation, tflItemNavigationChild, false);
                 moduleTextTagKnowlege.setText(articlesBean.getTitle());
+                moduleTextTagKnowlege.setBackgroundColor(ColorUtil.getRandColorCode());
+
                 return moduleTextTagKnowlege;
             }
         });
         tflItemNavigationChild.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                item.getArticles().get(position).getLink();
                 Intent tagIntent = new Intent(mContext, WebActivity.class);
                 tagIntent.putExtra("title", item.getArticles().get(position).getTitle());
                 tagIntent.putExtra("url", item.getArticles().get(position).getLink());

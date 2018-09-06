@@ -61,8 +61,6 @@ public class FirstModel implements IFirstModel {
                     @Override
                     public void onError(Throwable e) {
                         mvpCallBack.onError();
-                        Log.e("", "asdonError: " + e.toString());
-                        ToastUtil.showToast(e.toString());
                     }
 
                     @Override
