@@ -87,7 +87,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
         etLoginUser.setText(Global.getSpGlobalUtil().getUserName());
         etLoginPassword.setText(Global.getSpGlobalUtil().getPassword());
         if (isCheck) {
-            tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.color_base_yellow));
+            tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.main_color));
         } else {
             tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.gray));
         }
@@ -99,7 +99,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
         ToastUtil.showToast("登陆成功");
         loginPersenter.remember(loginBean, etLoginUser.getText().toString(), etLoginPassword.getText().toString(), isCheck);
         Intent loginIntent = new Intent(this, MainActivity.class);
-        loginIntent.putExtra("userName",loginBean.getData().getUsername());
+        loginIntent.putExtra("userName", loginBean.getData().getUsername());
         startActivity(loginIntent);
 
     }
@@ -142,7 +142,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
                 } else {
                     isCheck = true;
                     tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.main_color));
-
                 }
                 break;
             case R.id.tv_login_forget:

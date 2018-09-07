@@ -1,6 +1,9 @@
 package com.big.fishcash.cash.contract;
 
 import com.big.fishcash.cash.bean.HotSearchBean;
+import com.big.fishcash.cash.bean.SearchHistory;
+
+import java.util.List;
 
 /**
  * 版权：鸿搜网络公司 版权所有
@@ -51,6 +54,14 @@ public interface SearchContract {
          * @desc 检查完毕后跳转
          */
         void checkToIntent(boolean content);
+
+        /**
+         * @param searchHistoryList 送数据库查询的数据
+         * @author fenghao
+         * @date 2018/9/7 0007 上午 10:41
+         * @desc 展示从数据库查询的数据
+         */
+        void showSearchHistory(List<SearchHistory> searchHistoryList);
     }
 
     interface ISearchPersenter {
@@ -68,5 +79,26 @@ public interface SearchContract {
          */
         void checkSearchContent(String content);
 
+        /**
+         * @param content 要存在数据库的数据
+         * @author fenghao
+         * @date 2018/9/7 0007 上午 10:42
+         * @desc 检测输入不为空之后将关键词存入数据库
+         */
+        void saveSearchHistory(String content);
+
+        /**
+         * @author fenghao
+         * @date 2018/9/7 0007 上午 11:26
+         * @desc 查询全部数据
+         */
+        void getSearchHistory();
+
+        /**
+         * @author fenghao
+         * @date 2018/9/7 0007 上午 11:26
+         * @desc 删除数据 如果传的是kong的话 就删除全部
+         */
+        void deleteSearchHistory(String content);
     }
 }

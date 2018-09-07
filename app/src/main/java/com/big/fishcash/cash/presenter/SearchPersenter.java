@@ -3,10 +3,14 @@ package com.big.fishcash.cash.presenter;
 import android.text.TextUtils;
 
 import com.big.fishcash.cash.bean.HotSearchBean;
+import com.big.fishcash.cash.bean.SearchHistory;
 import com.big.fishcash.cash.contract.SearchContract;
 import com.big.fishcash.cash.model.modelinterface.ISearchModel;
 import com.big.fishcash.cash.network.MvpCallBack;
 import com.big.fishcash.cash.ui.activity.SearchActivity;
+import com.big.fishcash.cash.util.ToastUtil;
+
+import java.util.List;
 
 /**
  * 版权：鸿搜网络公司 版权所有
@@ -85,5 +89,40 @@ public class SearchPersenter extends BasePersenter<SearchActivity> implements Se
         } else {
             getMvpView().checkToIntent(true);
         }
+    }
+
+    @Override
+    public void saveSearchHistory(String content) {
+        iSearchModel.saveSeachHistory(content);
+    }
+
+    @Override
+    public void getSearchHistory() {
+        iSearchModel.getSearchHistory(new MvpCallBack<List<SearchHistory>>() {
+            @Override
+            public void onSuccess(List<SearchHistory> data) {
+                getMvpView().showSearchHistory(data);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+
+            }
+
+            @Override
+            public void onError() {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+    }
+
+    @Override
+    public void deleteSearchHistory(String  content) {
+        iSearchModel.deleteSearchHistory(content);
     }
 }

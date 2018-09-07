@@ -10,13 +10,18 @@ import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
 
+import org.litepal.LitePal;
+import org.litepal.LitePalApplication;
+import org.litepal.tablemanager.Connector;
+
 import java.util.Iterator;
 import java.util.Stack;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Connection;
 import okhttp3.OkHttpClient;
 
-public class BaseApplication extends Application {
+public class BaseApplication extends LitePalApplication {
 
     public static BaseApplication app;
 
@@ -28,11 +33,34 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-            app = this;
+        app = this;
         settingOkHttp();
-
+        initLitePal();
     }
 
+    /**
+     * @author fenghao
+     * @date 2018/9/7 0007 上午 10:32
+     * @desc 初始化数据库
+     */
+    private void initLitePal() {
+        /*
+        第一：如果你自己项目中没有写BaseApplication这种基类的话，就直接在清单文件中配置 LitePalApplication，代码如下：
+            <manifest>
+         <application
+            android:name="org.litepal.LitePalApplication"
+            ...
+         >
+            ...
+         </application>
+     </manifest>
+
+        第二：如果你自己的项目中定义了自己的 BaseApplication，那么就直接在BaseApplication中的onCreate()方法中初始化下 LitePal就ok。
+         */
+        // 初始化LitePal数据库
+        LitePal.initialize(this);
+        Connector.getDatabase();
+    }
 
 
     public static synchronized BaseApplication getInstance() {
@@ -127,6 +155,7 @@ public class BaseApplication extends Application {
     public static Context getAppContext() {
         return app.getApplicationContext();
     }
+
     private void settingOkHttp() {
         CookieJarImpl cookieJar = new CookieJarImpl(new PersistentCookieStore(getApplicationContext()));
         OkHttpClient okHttpClient = new OkHttpClient.Builder()

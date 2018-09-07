@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="litepaldemo" />
+
+    <version value="1" />
+
+    <list>
+        <mapping class="com.big.fishcash.cash.bean.SearchHistory" ></mapping>
+    </list>
+
+
+    <!-- 直接设置这个，就表示数据库存储的位置，直接打开手机存储就可以找到 -->
+    <!--<storage value="guolin/database"/>-->
+</litepal>

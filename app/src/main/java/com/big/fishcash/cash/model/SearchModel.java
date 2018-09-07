@@ -1,9 +1,16 @@
 package com.big.fishcash.cash.model;
 
+import android.text.TextUtils;
+
 import com.big.fishcash.cash.bean.HotSearchBean;
+import com.big.fishcash.cash.bean.SearchHistory;
 import com.big.fishcash.cash.model.modelinterface.ISearchModel;
 import com.big.fishcash.cash.network.FishClient;
 import com.big.fishcash.cash.network.MvpCallBack;
+
+import org.litepal.crud.DataSupport;
+
+import java.util.List;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -68,4 +75,29 @@ public class SearchModel implements ISearchModel {
                     }
                 });
     }
+
+    @Override
+    public void saveSeachHistory(String content) {
+        List<SearchHistory> searchHistoryList = DataSupport.where("history=?", content).find(SearchHistory.class);
+        if (searchHistoryList.size() < 1) {
+            SearchHistory searchHistory = new SearchHistory();
+            searchHistory.setHistory(content);
+            searchHistory.save();
+        }
+    }
+
+    @Override
+    public void getSearchHistory(MvpCallBack<List<SearchHistory>> mvpCallBack) {
+        mvpCallBack.onSuccess(DataSupport.findAll(SearchHistory.class));
+    }
+
+    @Override
+    public void deleteSearchHistory(String content) {
+        if (TextUtils.isEmpty(content)) {
+            DataSupport.deleteAll(SearchHistory.class);
+        } else {
+            DataSupport.deleteAll(SearchHistory.class, "history=?", content);
+        }
+    }
+
 }
