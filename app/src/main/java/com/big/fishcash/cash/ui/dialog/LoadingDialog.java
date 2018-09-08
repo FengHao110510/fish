@@ -28,7 +28,7 @@ import com.big.fishcash.cash.util.ToastUtil;
 public class LoadingDialog extends Dialog {
 
     private ProgressBar progressBar;
-    private TextView tv_msg;
+    private TextView tvMsg;
 
     public LoadingDialog(@NonNull Context context) {
         super(context, R.style.transparent_dialog);
@@ -49,7 +49,7 @@ public class LoadingDialog extends Dialog {
         //加载布局
         LinearLayout layout = (LinearLayout) v.findViewById(R.id.dialog_view);
         progressBar = (ProgressBar) v.findViewById(R.id.pb_Circle);
-        tv_msg = (TextView) v.findViewById(R.id.tv_msg);
+        tvMsg = (TextView) v.findViewById(R.id.tv_msg);
 
 
         //设置不可通过点击外面区域取消
@@ -73,7 +73,7 @@ public class LoadingDialog extends Dialog {
     // 设置加载信息
     public void setMessage(String msg) {
         if (!TextUtils.isEmpty(msg)) {
-            tv_msg.setText(msg);
+            tvMsg.setText(msg);
         }
 
     }

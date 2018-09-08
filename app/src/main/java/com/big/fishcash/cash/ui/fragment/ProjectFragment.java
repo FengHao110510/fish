@@ -97,7 +97,6 @@ public class ProjectFragment extends BaseFragment implements ProjectContract.IPr
             bundle.putInt("cid",dataBeanList.get(i).getId());
             bundle.putInt("where",0);
             contentFragment.setArguments(bundle);
-//            fragmentList.add(ProjectContentFragment);
             fragmentList.add(contentFragment);
         }
         tbProjectTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -124,7 +123,8 @@ public class ProjectFragment extends BaseFragment implements ProjectContract.IPr
         for (int i = 0; i < dataBeanList.size(); i++) {
             tbProjectTab.getTabAt(i).setText(dataBeanList.get(i).getName());
         }
-        vpProject.setOffscreenPageLimit(dataBeanList.size()); //预加载
+        //预加载
+        vpProject.setOffscreenPageLimit(dataBeanList.size());
     }
 
 

@@ -100,7 +100,6 @@ public class KnowledgeChildActivity extends BaseActivity {
             bundle.putInt("where", 1);
 
             contentFragment.setArguments(bundle);
-//            fragmentList.add(ProjectContentFragment);
             fragmentList.add(contentFragment);
 
         }
@@ -127,7 +126,8 @@ public class KnowledgeChildActivity extends BaseActivity {
         for (int i = 0; i < childrenBeanList.size(); i++) {
             tabKonwledgeChild.getTabAt(i).setText(childrenBeanList.get(i).getName());
         }
-        vpKonwledgeChild.setOffscreenPageLimit(childrenBeanList.size()); //预加载
+        //预加载
+        vpKonwledgeChild.setOffscreenPageLimit(childrenBeanList.size());
     }
 
     @OnClick(R.id.fabtn_konwledge_child)

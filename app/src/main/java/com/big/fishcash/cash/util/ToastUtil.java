@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,7 +71,7 @@ public class ToastUtil {
         private Toast mToast;
 
         private MyToast(Context context, CharSequence text, int duration) {
-            View v = LayoutInflater.from(context).inflate(R.layout.module_toast_layout, null);
+            View v = LayoutInflater.from(context).inflate(R.layout.module_toast_layout, new FrameLayout(context),false);
             TextView textView = (TextView) v.findViewById(R.id.textView1);
             textView.setText(text);
             mToast = new Toast(context);

@@ -93,7 +93,8 @@ public class MainActivity extends BaseActivity {
     FloatingActionButton fabtnMain;
 
     private ArrayList<BaseFragment> fragmentList;
-    private BaseFragment tempFragment;//当前fragment
+    //当前fragment
+    private BaseFragment tempFragment;
     //选中fragment对应的位置
     private int position = 0;
 
@@ -363,8 +364,8 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
 
     }
-
-    private long exitTime = 0;//计算点击时间
+    //计算点击时间
+    private long exitTime = 0;
 
     /**
      * 点击两次退出app

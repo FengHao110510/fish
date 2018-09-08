@@ -48,12 +48,12 @@ public class LoginModel implements ILoginModel {
         FishClient.getFishRetrofitInstance()
                 .tologin(user, password)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())//请求完成后在主线程更显UI
+                //请求完成后在主线程更显UI
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LoginBean>() {
                     @Override
                     public void onCompleted() {
                         //所有事件都完成，可以做些操作。。。
-//                        ToastUtil.showToast("cg2");
                         mvpCallBack.onComplete();
                     }
 
@@ -66,7 +66,6 @@ public class LoginModel implements ILoginModel {
                     @Override
                     public void onNext(LoginBean loginBean) {
                         //这里的book就是我们请求接口返回的实体类
-//                        Log.e("", "onNext: "+loginBean.toString() );
                         if (loginBean.getErrorCode()==0){
                             mvpCallBack.onSuccess(loginBean);
                         }else {

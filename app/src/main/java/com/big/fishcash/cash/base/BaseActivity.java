@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.ui.dialog.LoadingDialog;
-import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
 
 import butterknife.ButterKnife;
@@ -28,7 +27,7 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity implements BaseIView {
 
     public Typeface typeface;
-    private TextView finish_back;
+    private TextView finishBack;
     private static LoadingDialog loadingDialog;
     private TextView title;
     /***获取TAG的activity名称**/
@@ -83,9 +82,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
 
     //设置是否显示回退键
     public void initBack() {
-        finish_back = findViewById(R.id.tv_titlebar_finish_back);
-        finish_back.setTypeface(typeface);
-        finish_back.setOnClickListener(new View.OnClickListener() {
+        finishBack = findViewById(R.id.tv_titlebar_finish_back);
+        finishBack.setTypeface(typeface);
+        finishBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
