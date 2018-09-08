@@ -216,6 +216,7 @@ public class MainActivity extends BaseActivity {
         fragmentList.add(new NavigationFragment());
         //项目
         fragmentList.add(new ProjectFragment());
+        //默认点击第一个
         llMainFirst.performClick();
     }
 
@@ -275,7 +276,7 @@ public class MainActivity extends BaseActivity {
             case R.id.ll_main_start_logout:
                 //退出登录
                 Global.logout();
-                startActivity(new Intent(this,LoginActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 finishActivity();
                 break;
             case R.id.fabtn_main:

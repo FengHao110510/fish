@@ -275,7 +275,7 @@ public class FirstFragment extends BaseFragment implements FirstContract.IFirstV
     private class MyLoader extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
-            Glide.with(context).load((String) path).into(imageView);
+            Glide.with(context).load((String) path).dontAnimate().into(imageView);
         }
     }
 

@@ -64,7 +64,7 @@ public class ArticleListAdapter extends BaseQuickAdapter<ArticleBean.DataBean.Da
                 .addOnClickListener(R.id.iv_item_atricle_collect);
         //看看是否有图
         if (!TextUtils.isEmpty(item.getEnvelopePic())) {
-            Glide.with(mContext).load(item.getEnvelopePic()).placeholder(R.drawable.dg_logo)
+            Glide.with(mContext).load(item.getEnvelopePic()).dontAnimate().placeholder(R.drawable.dg_logo)
                     .error(R.drawable.dg_logo).into((ImageView) helper.getView(R.id.iv_item_atricle_img));
             helper.setVisible(R.id.iv_item_atricle_img, true);
         }

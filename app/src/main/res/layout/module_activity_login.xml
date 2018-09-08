@@ -24,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="20dp"
         android:layout_weight="5"
         android:orientation="vertical">
@@ -121,8 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
             <View
                 style="@style/view_line_horizontal_1"
@@ -148,8 +147,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-         >
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/ll_login_qq"
@@ -157,7 +155,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_login_qq_icon"
@@ -175,6 +174,7 @@
                     android:textColor="@color/gray"
                     android:textSize="12sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ll_login_youke"
 
@@ -200,13 +200,16 @@
                     android:textColor="@color/gray"
                     android:textSize="12sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ll_login_wechar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_login_wechar_icon"

@@ -3,6 +3,7 @@ package com.big.fishcash.cash.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.big.fishcash.cash.ui.fragment.ContentFragment;
 
@@ -41,7 +42,7 @@ import java.util.List;
  */
 
 
-public class ContentVPAdapter extends FragmentPagerAdapter {
+public class ContentVPAdapter extends FragmentStatePagerAdapter {
 
     List<ContentFragment> contentFragmentList = new ArrayList<>();
     public ContentVPAdapter(FragmentManager fm, List<ContentFragment> fragments) {
