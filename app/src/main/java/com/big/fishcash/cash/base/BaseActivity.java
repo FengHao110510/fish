@@ -80,24 +80,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseIVie
         super.finish();
     }
 
-    //设置是否显示回退键
-    public void initBack() {
-        finishBack = findViewById(R.id.tv_titlebar_finish_back);
-        finishBack.setTypeface(typeface);
-        finishBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-    }
-
-    //设置标题
-    public void initTitle(String s) {
-        title = findViewById(R.id.tv_titlebar_title);
-        title.setText(s);
-    }
-
     /**
      * 进度条
      */
