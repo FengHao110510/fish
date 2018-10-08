@@ -1,15 +1,11 @@
 package com.big.fishcash.cash.adapter;
 
-import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.bean.ArticleBean;
-import com.big.fishcash.cash.network.FishClient;
-import com.big.fishcash.cash.util.Global;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;

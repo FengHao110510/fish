@@ -47,6 +47,7 @@ public class FirstPesenter extends BasePersenter<FirstFragment> implements First
         this.iFirstModel = iFirstModel;
     }
 
+
     @Override
     public void getArticleList(int page) {
         if (!isAttachView()) {

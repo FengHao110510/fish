@@ -20,6 +20,8 @@ import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
 import com.big.fishcash.cash.base.BaseApplication;
 import com.big.fishcash.cash.bean.FABTNbean;
+import com.big.fishcash.cash.service.GeTuiIntentService;
+import com.big.fishcash.cash.service.GeTuiServiceService;
 import com.big.fishcash.cash.ui.activity.AboutWeActivity;
 import com.big.fishcash.cash.ui.activity.LoginActivity;
 import com.big.fishcash.cash.ui.activity.MoreActivity;
@@ -33,6 +35,7 @@ import com.big.fishcash.cash.util.FontHelper;
 import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
 import com.big.fishcash.cash.views.CircleImageView;
+import com.igexin.sdk.PushManager;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -109,8 +112,21 @@ public class MainActivity extends BaseActivity {
     public void init() {
         initData();
         initToolBar();
+        initGeTui();
         initDrawerLayout();
         initFragment();
+
+    }
+
+    /**
+     *  @date    2018/9/28 0028 下午 12:16
+     *  @desc   初始化个推
+     */
+    private void initGeTui() {
+        // com.getui.demo.DemoPushService 为第三方自定义推送服务
+        PushManager.getInstance().initialize(getApplicationContext(), GeTuiServiceService.class);
+        // com.getui.demo.DemoIntentService 为第三方自定义的推送服务事件接收类
+        PushManager.getInstance().registerPushIntentService(getApplicationContext(), GeTuiIntentService.class);
     }
 
     @Override

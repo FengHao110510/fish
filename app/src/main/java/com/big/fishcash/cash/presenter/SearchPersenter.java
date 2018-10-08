@@ -10,6 +10,7 @@ import com.big.fishcash.cash.network.MvpCallBack;
 import com.big.fishcash.cash.ui.activity.SearchActivity;
 import com.big.fishcash.cash.util.ToastUtil;
 
+import java.util.Collections;
 import java.util.List;
 
 /**

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
@@ -15,6 +16,7 @@ import com.big.fishcash.cash.contract.RegistContract;
 import com.big.fishcash.cash.model.RegistModel;
 import com.big.fishcash.cash.presenter.RegistPesenter;
 import com.big.fishcash.cash.util.FontHelper;
+import com.big.fishcash.cash.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,12 +95,12 @@ public class RegistActivity extends BaseActivity implements RegistContract.IRegi
                         , etRegistSetPassword.getText().toString(), etRegistSetPassword2.getText().toString());
                 break;
             case R.id.tv_regist_login:
-                finishActivity();
                 break;
             default:
                 break;
         }
     }
+
 
     //============================================================================================
     @Override
