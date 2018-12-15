@@ -1,9 +1,11 @@
 package com.big.fishcash.cash.ui.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,10 +14,18 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.big.fishcash.cash.R;
 import com.big.fishcash.cash.base.BaseActivity;
+import com.big.fishcash.cash.ui.MainActivity;
+import com.big.fishcash.cash.util.Global;
 import com.big.fishcash.cash.util.ToastUtil;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,6 +51,7 @@ public class WebActivity extends BaseActivity {
         initData();
         initToolBar();
     }
+
 
     /**
      * @author fenghao
@@ -69,13 +80,20 @@ public class WebActivity extends BaseActivity {
                 switch (item.getItemId()) {
                     case R.id.menu_web_item_share:
                         ToastUtil.showToast("分享");
+                        Log.e(TAG, "onMenuItemClick: " + Global.getPackageName(getApplicationContext()));
+                        new ShareAction(WebActivity.this)
+                                .setPlatform(SHARE_MEDIA.WEIXIN)//传入平台
+                                .withText(getIntent().getStringExtra("url"))//分享内容
+                                .setCallback(shareListener)//回调监听器
+                                .share();
+
                         break;
                     case R.id.menu_web_item_xin:
                         ToastUtil.showToast("爱心");
-                        if (like){
+                        if (like) {
                             item.setIcon(R.mipmap.xin2);
                             like = false;
-                        }else {
+                        } else {
                             item.setIcon(R.mipmap.xin1);
                             like = true;
                         }
@@ -88,6 +106,61 @@ public class WebActivity extends BaseActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
+    private UMShareListener shareListener = new UMShareListener() {
+        /**
+         * @descrption 分享开始的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onStart(SHARE_MEDIA platform) {
+
+        }
+
+        /**
+         * @descrption 分享成功的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onResult(SHARE_MEDIA platform) {
+            ToastUtil.showToast("成功了");
+        }
+
+        /**
+         * @descrption 分享失败的回调
+         * @param platform 平台类型
+         * @param t 错误原因
+         */
+        @Override
+        public void onError(SHARE_MEDIA platform, Throwable t) {
+            ToastUtil.showToast("失败");
+        }
+
+        /**
+         * @descrption 分享取消的回调
+         * @param platform 平台类型
+         */
+        @Override
+        public void onCancel(SHARE_MEDIA platform) {
+            ToastUtil.showToast("取消了");
+        }
+    };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -127,12 +200,11 @@ public class WebActivity extends BaseActivity {
             }
 
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request)
-            {
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 //返回false，意味着请求过程里，不管有多少次的跳转请求（即新的请求地址），均交给webView自己处理，这也是此方法的默认处理
                 //返回true，说明你自己想根据url，做新的跳转，比如在判断url符合条件的情况下，我想让webView加载http://ask.csdn.net/questions/178242
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    if (request.getUrl().toString().contains("sina.cn")){
+                    if (request.getUrl().toString().contains("sina.cn")) {
                         view.loadUrl("http://ask.csdn.net/questions/178242");
                         return true;
                     }

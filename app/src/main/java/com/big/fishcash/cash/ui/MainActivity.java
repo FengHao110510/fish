@@ -237,10 +237,6 @@ public class MainActivity extends BaseActivity {
         llMainFirst.performClick();
     }
 
-    @OnClick()
-    public void onViewClicked() {
-    }
-
     @OnClick({R.id.ll_main_first, R.id.ll_main_knowledge, R.id.ll_main_navigation,
             R.id.ll_main_project, R.id.ll_main_start_color, R.id.ll_main_start_night,
             R.id.ll_main_start_we, R.id.ll_main_start_logout, R.id.fabtn_main})

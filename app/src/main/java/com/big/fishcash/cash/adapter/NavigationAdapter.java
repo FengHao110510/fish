@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.big.fishcash.cash.R;
-import com.big.fishcash.cash.bean.KnowledgeBean;
 import com.big.fishcash.cash.bean.NavigationBean;
 import com.big.fishcash.cash.ui.activity.WebActivity;
 import com.big.fishcash.cash.util.ColorUtil;

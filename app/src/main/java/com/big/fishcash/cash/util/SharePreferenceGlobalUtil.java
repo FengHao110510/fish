@@ -63,7 +63,7 @@ public class SharePreferenceGlobalUtil {
 
 
     /**
-     * 账号
+     * 用户名字
      *
      * @param userName
      */
@@ -75,7 +75,19 @@ public class SharePreferenceGlobalUtil {
     public String getUserName() {
         return sp.getString("userName", "");
     }
+    /**
+     * 账号
+     *
+     * @param user
+     */
+    public void setUser(String user) {
+        editor.putString("user", user);
+        editor.commit();
+    }
 
+    public String getUser() {
+        return sp.getString("user", "");
+    }
     /**
      * 密码
      *

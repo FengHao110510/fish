@@ -4,6 +4,8 @@ package com.big.fishcash.cash.base;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
+import com.umeng.commonsdk.UMConfigure;
+import com.umeng.socialize.PlatformConfig;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cookie.CookieJarImpl;
 import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
@@ -17,7 +19,6 @@ import java.util.Iterator;
 import java.util.Stack;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Connection;
 import okhttp3.OkHttpClient;
 
 public class BaseApplication extends LitePalApplication {
@@ -35,6 +36,11 @@ public class BaseApplication extends LitePalApplication {
         app = this;
         settingOkHttp();
         initLitePal();
+        UMConfigure.setLogEnabled(true);
+        UMConfigure.init(this,""
+                ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
+
+        PlatformConfig.setWeixin("wxf9e51911c99933fe", "c2668169999f919d5cf28340325323f1");
     }
 
     /**

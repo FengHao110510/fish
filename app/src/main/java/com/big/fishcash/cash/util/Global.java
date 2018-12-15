@@ -3,6 +3,8 @@ package com.big.fishcash.cash.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -43,7 +45,7 @@ public class Global {
     }
 
     public static synchronized SharePreferenceGlobalUtil getSpGlobalUtil() {
-        if (mSpGlobalUtil == null){
+        if (mSpGlobalUtil == null) {
             mSpGlobalUtil = new SharePreferenceGlobalUtil(
                     BaseApplication.getAppContext(), "hong_sou_sy_global");
         }
@@ -52,13 +54,31 @@ public class Global {
     }
 
 
-
     /**
      * 清除登录信息
      */
     public static void logout() {
-       Global.getSpGlobalUtil().setCheckLogin(false);
+        Global.getSpGlobalUtil().setCheckLogin(false);
     }
+
+    /**
+     * 获取包名
+     *
+     * @param context
+     * @return
+     */
+    public static synchronized String getPackageName(Context context) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    context.getPackageName(), 0);
+            return packageInfo.packageName;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     /**
      * 获取当前版本号
@@ -121,7 +141,7 @@ public class Global {
      */
     public static int getViewHeight(View view, boolean isHeight) {
         int result;
-        if (view == null){
+        if (view == null) {
             return 0;
         }
         if (isHeight) {

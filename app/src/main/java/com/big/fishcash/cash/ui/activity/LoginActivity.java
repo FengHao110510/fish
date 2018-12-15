@@ -84,7 +84,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.ILoginV
         FontHelper.injectFont(llLogin);
         //账号密码回显
         isCheck = Global.getSpGlobalUtil().getCheckPassword();
-        etLoginUser.setText(Global.getSpGlobalUtil().getUserName());
+        etLoginUser.setText(Global.getSpGlobalUtil().getUser());
         etLoginPassword.setText(Global.getSpGlobalUtil().getPassword());
         if (isCheck) {
             tvLoginCheck.setTextColor(ContextCompat.getColor(this, R.color.main_color));
